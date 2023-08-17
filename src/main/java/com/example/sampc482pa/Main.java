@@ -13,7 +13,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-//        Inventory inventory = new Inventory();
         InHouse p1 = new InHouse(1, "wheel", 2.00, 1, 1, 1, 1);
         Outsourced p2 = new Outsourced(2, "engine", 4.00, 1, 1, 1, "company a");
         Inventory.addPart(p1);
@@ -32,7 +31,11 @@ public class Main extends Application {
         catch (IOException e) {
             e.printStackTrace();
         }
+        catch (Throwable thrwObj) {
+            thrwObj.printStackTrace();
+        }
     }
+
     public static void main(String[] args) {
         launch(args);
     }

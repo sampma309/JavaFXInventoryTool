@@ -7,6 +7,9 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -16,13 +19,34 @@ public class MainController {
     private Button exitButton;
     @FXML
     private Button addPartButton;
+    @FXML
+    private TableView<Part> partsInventory;
+    @FXML
+    private TableColumn<Part, Integer> partIDCol;
+    @FXML
+    private TableColumn<Part, String> partNameCol;
+    @FXML
+    private TableColumn<Part, Integer> partInvCol;
+    @FXML
+    private TableColumn<Part, Double> partPriceOrCostCol;
 
     private Stage stage;
 
     @FXML
     public void initialize() {
-        for (Part p : Inventory.getAllParts()) {
-            System.out.println("Part Name: " + p.getName());
+        try {
+            partsInventory.setItems(Inventory.getAllParts());
+
+            partIDCol.setCellValueFactory(new PropertyValueFactory<Part, Integer>("id"));
+            partNameCol.setCellValueFactory(new PropertyValueFactory<Part, String>("name"));
+            partInvCol.setCellValueFactory(new PropertyValueFactory<Part, Integer>("stock"));
+            partPriceOrCostCol.setCellValueFactory(new PropertyValueFactory<Part, Double>("price"));
+
+            partsInventory.getColumns().setAll(partIDCol, partNameCol, partInvCol, partPriceOrCostCol);
+        }
+        catch (Exception e) {
+            System.out.println("Failed to display table rows");
+            e.printStackTrace();
         }
     }
 

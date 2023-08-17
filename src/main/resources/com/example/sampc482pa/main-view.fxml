@@ -21,12 +21,12 @@
       </Label>
       <AnchorPane layoutX="16.0" layoutY="64.0" prefHeight="301.0" prefWidth="524.0" style="-fx-border-color: BLACK; -fx-border-radius: 10;">
          <children>
-            <TableView layoutX="22.0" layoutY="50.0" prefHeight="180.0" prefWidth="378.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+            <TableView fx:id="partsInventory" layoutX="22.0" layoutY="50.0" prefHeight="180.0" prefWidth="378.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
               <columns>
-                <TableColumn prefWidth="60.5" text="Part ID" />
-                <TableColumn prefWidth="179.0" text="Part Name" />
-                  <TableColumn prefWidth="100.0" text="Inventory Level" />
-                  <TableColumn prefWidth="144.5" text="Price/Cost per Unit" />
+                <TableColumn fx:id="partIDCol" prefWidth="60.5" text="Part ID" />
+                <TableColumn fx:id="partNameCol" prefWidth="179.0" text="Part Name" />
+                  <TableColumn fx:id="partInvCol" prefWidth="100.0" text="Inventory Level" />
+                  <TableColumn fx:id="partPriceOrCostCol" prefWidth="144.5" text="Price/Cost per Unit" />
               </columns>
             </TableView>
             <Label layoutX="32.0" layoutY="17.0" text="Parts">
@@ -57,7 +57,7 @@
       </AnchorPane>
       <AnchorPane layoutX="554.0" layoutY="64.0" prefHeight="301.0" prefWidth="524.0" style="-fx-border-color: BLACK; -fx-border-radius: 10;">
          <children>
-            <TableView layoutX="22.0" layoutY="50.0" prefHeight="180.0" prefWidth="378.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+            <TableView fx:id="productsTable" layoutX="22.0" layoutY="50.0" prefHeight="180.0" prefWidth="378.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
                <columns>
                   <TableColumn prefWidth="72.3333740234375" text="Product ID" />
                   <TableColumn prefWidth="167.6666259765625" text="Product Name" />

@@ -41,7 +41,7 @@
                   <Insets left="5.0" />
                </GridPane.margin>
             </Label>
-            <TextField fx:id="partIDText" GridPane.columnIndex="1" />
+            <TextField fx:id="partIDText" disable="true" editable="false" GridPane.columnIndex="1" />
             <TextField fx:id="partNameText" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="partInvText" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="partPriceOrCostText" GridPane.columnIndex="1" GridPane.rowIndex="3" />
