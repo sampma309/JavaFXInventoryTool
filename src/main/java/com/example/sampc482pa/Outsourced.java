@@ -1,10 +1,13 @@
 package com.example.sampc482pa;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class Outsourced extends Part {
+    private static final AtomicInteger id = new AtomicInteger(200);
     private String companyName;
 
-    public Outsourced(int id, String name, double price, int stock, int min, int max, String companyName) {
-        super(id, name, price, stock, min, max);
+    public Outsourced(String name, double price, int stock, int min, int max, String companyName) {
+        super(Outsourced.id.getAndIncrement(), name, price, stock, min, max);
         this.companyName = companyName;
     }
 
@@ -17,7 +20,7 @@ public class Outsourced extends Part {
     }
 
     public static void main(String[] args) {
-        Outsourced p = new Outsourced(1, "wheel", 3.50, 13, 0, 100, "Honda");
+        Outsourced p = new Outsourced("wheel", 3.50, 13, 0, 100, "Honda");
 
         System.out.println(p.getId());
         System.out.println(p.getName());

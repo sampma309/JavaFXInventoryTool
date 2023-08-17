@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -37,10 +36,10 @@ public class MainController {
         try {
             partsInventory.setItems(Inventory.getAllParts());
 
-            partIDCol.setCellValueFactory(new PropertyValueFactory<Part, Integer>("id"));
-            partNameCol.setCellValueFactory(new PropertyValueFactory<Part, String>("name"));
-            partInvCol.setCellValueFactory(new PropertyValueFactory<Part, Integer>("stock"));
-            partPriceOrCostCol.setCellValueFactory(new PropertyValueFactory<Part, Double>("price"));
+            partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+            partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+            partInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+            partPriceOrCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
             partsInventory.getColumns().setAll(partIDCol, partNameCol, partInvCol, partPriceOrCostCol);
         }

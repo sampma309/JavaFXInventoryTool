@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cc038ba-19a4-4432-9c99-00494cfcc30b" name="Changes" comment="Add &quot;Add Part&quot; form">
+    <list default="true" id="9cc038ba-19a4-4432-9c99-00494cfcc30b" name="Changes" comment="Main view displays inventory information">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddPartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/InHouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/InHouse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sampc482pa/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sampc482pa/main-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sampc482pa/add-part-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sampc482pa/add-part-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +43,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Programming/WGU/Software 1/SampC482PA/src/main/resources/com/example/sampc482pa",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
@@ -47,6 +51,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Programming\WGU\Software 1\SampC482PA\src\main\resources\com\example\sampc482pa" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Programming\WGU\Software 1\SampC482PA\src\main\resources" />
     </key>
@@ -94,14 +101,23 @@
       <option name="project" value="LOCAL" />
       <updated>1692234202672</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Main view displays inventory information">
+      <option name="closed" value="true" />
+      <created>1692237680119</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1692237680119</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add Product class" />
     <MESSAGE value="Add entry point for application" />
     <MESSAGE value="Add &quot;Add Part&quot; form" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add &quot;Add Part&quot; form" />
+    <MESSAGE value="Main view displays inventory information" />
+    <option name="LAST_COMMIT_MESSAGE" value="Main view displays inventory information" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -22,7 +22,7 @@ public class AddPartController {
     @FXML
     private RadioButton inHousePartButton, outsourcedPartButton;
     @FXML
-    private Button createPart;
+    private Button createPartButton, cancelButton;
 
     Stage stage;
 
@@ -37,9 +37,6 @@ public class AddPartController {
 
     public void createPart(ActionEvent event) {
 
-//        partIDText =
-
-        int partID = Integer.parseInt(partIDText.getText());
         String partName = partNameText.getText();
         int partStock = Integer.parseInt(partInvText.getText());
         double partPriceOrCost = Double.parseDouble(partPriceOrCostText.getText());
@@ -47,11 +44,11 @@ public class AddPartController {
         int partInvMin = Integer.parseInt(partInvMinText.getText());
         if (inHousePartButton.isSelected()) {
             int partSource = Integer.parseInt(partSourceText.getText());
-            InHouse newPart = new InHouse(partID, partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
+            InHouse newPart = new InHouse(partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
             Inventory.addPart(newPart);
         } else if (outsourcedPartButton.isSelected()) {
             String partSource = partSourceText.getText();
-            Outsourced newPart = new Outsourced(partID, partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
+            Outsourced newPart = new Outsourced(partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
             Inventory.addPart(newPart);
         }
         returnToMainPage();
@@ -61,7 +58,7 @@ public class AddPartController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-view.fxml"));
             Scene addPartForm = new Scene(fxmlLoader.load());
-            stage = (Stage) createPart.getScene().getWindow();
+            stage = (Stage) createPartButton.getScene().getWindow();
             stage.setScene(addPartForm);
             stage.show();
         }

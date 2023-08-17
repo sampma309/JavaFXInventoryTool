@@ -13,8 +13,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        InHouse p1 = new InHouse(1, "wheel", 2.00, 1, 1, 1, 1);
-        Outsourced p2 = new Outsourced(2, "engine", 4.00, 1, 1, 1, "company a");
+        InHouse p1 = new InHouse("wheel", 2.00, 1, 1, 1, 1);
+        Outsourced p2 = new Outsourced("engine", 4.00, 1, 1, 1, "company a");
         Inventory.addPart(p1);
         Inventory.addPart(p2);
         ObservableList<Part> parts = Inventory.getAllParts();

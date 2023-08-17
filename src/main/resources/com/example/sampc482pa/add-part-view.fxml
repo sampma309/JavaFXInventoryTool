@@ -72,6 +72,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="createPart" layoutX="223.0" layoutY="353.0" mnemonicParsing="false" onAction="#createPart" text="Save" />
+      <Button fx:id="createPartButton" layoutX="211.0" layoutY="353.0" mnemonicParsing="false" onAction="#createPart" text="Save" />
+      <Button fx:id="cancelButton" layoutX="271.0" layoutY="353.0" mnemonicParsing="false" onAction="#returnToMainPage" text="Cancel" />
    </children>
 </AnchorPane>

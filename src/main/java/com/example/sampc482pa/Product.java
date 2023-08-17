@@ -83,9 +83,9 @@ public class Product {
     }
 
     public static void main(String[] args) {
-        InHouse p1 = new InHouse(1, "wheel", 4.20, 69, 1, 4, 69);
-        Outsourced p2 = new Outsourced(2, "engine", 420, 4, 1, 1, "Cummins");
-        InHouse p3 = new InHouse(3, "window", 54, 69, 1, 4, 9);
+        InHouse p1 = new InHouse("wheel", 4.20, 69, 1, 4, 69);
+        Outsourced p2 = new Outsourced("engine", 420, 4, 1, 1, "Cummins");
+        InHouse p3 = new InHouse("window", 54, 69, 1, 4, 9);
         Product prod = new Product(1, "car", 42, 42, 42, 42);
 
         prod.associatedParts.add(p1);
