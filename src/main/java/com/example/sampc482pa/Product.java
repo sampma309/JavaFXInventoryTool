@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 
 public class Product {
     private ObservableList<Part> associatedParts;
-    private int id;
+    private static int id = 1000;
     private String name;
     private double price;
     private int stock;
@@ -13,13 +13,19 @@ public class Product {
     private int max;
 
     public Product(int id, String name, double price, int stock, int min, int max) {
-        this.id = id;
+        this.id = getNextID();
         this.name = name;
         this.price = price;
         this.stock = stock;
         this.min = min;
         this.max = max;
         this.associatedParts = FXCollections.observableArrayList();
+    }
+
+    private int getNextID() {
+        int nextAvailableID = id;
+        id++;
+        return nextAvailableID;
     }
 
     public void setId(int id) {
@@ -83,10 +89,10 @@ public class Product {
     }
 
     public static void main(String[] args) {
-        InHouse p1 = new InHouse("wheel", 4.20, 69, 1, 4, 69);
-        Outsourced p2 = new Outsourced("engine", 420, 4, 1, 1, "Cummins");
-        InHouse p3 = new InHouse("window", 54, 69, 1, 4, 9);
-        Product prod = new Product(1, "car", 42, 42, 42, 42);
+        InHouse p1 = new InHouse(-1, "wheel", 4.20, 69, 1, 4, 69);
+        Outsourced p2 = new Outsourced(-1, "engine", 420, 4, 1, 1, "Cummins");
+        InHouse p3 = new InHouse(-1, "window", 54, 69, 1, 4, 9);
+        Product prod = new Product(-1, "car", 42, 42, 42, 42);
 
         prod.associatedParts.add(p1);
         prod.associatedParts.add(p2);

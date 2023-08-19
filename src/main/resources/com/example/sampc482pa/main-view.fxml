@@ -45,7 +45,7 @@
                </rowConstraints>
                <children>
                   <Button fx:id="partAddButton" mnemonicParsing="false" onAction="#loadAddPartForm" text="Add" />
-                  <Button fx:id="partModifyButton" mnemonicParsing="false" text="Modify" GridPane.columnIndex="1" />
+                  <Button fx:id="partModifyButton" mnemonicParsing="false" onAction="#loadModifyPartForm" text="Modify" GridPane.columnIndex="1" />
                   <Button fx:id="partDeleteButton" mnemonicParsing="false" text="Delete" GridPane.columnIndex="2" />
                </children>
             </GridPane>

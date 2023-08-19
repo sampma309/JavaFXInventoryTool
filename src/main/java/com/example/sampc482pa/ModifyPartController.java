@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AddPartController {
+public class ModifyPartController {
     @FXML
     Label partIDLabel, partNameLabel, partInvLabel, partPriceOrCostLabel,
             partInvMinLabel, partInvMaxLabel, partSourceLabel;
@@ -33,30 +33,6 @@ public class AddPartController {
         } else if (event.getSource() == outsourcedPartButton) {
             partSourceLabel.setText("Company Name");
         }
-    }
-
-    public void createPart(ActionEvent event) {
-
-        String partName = partNameText.getText();
-        int partStock = Integer.parseInt(partInvText.getText());
-        double partPriceOrCost = Double.parseDouble(partPriceOrCostText.getText());
-        int partInvMax = Integer.parseInt(partInvMaxText.getText());
-        int partInvMin = Integer.parseInt(partInvMinText.getText());
-
-        if (inHousePartButton.isSelected()) {
-            int partSource = Integer.parseInt(partSourceText.getText());
-
-            /* passing -1 as the ID is purely so the constructor matches the one given in the UML
-            diagram. In a real project, I wouldn't do this and instead use an AtomicInteger
-            to keep track of the next available part/product ID number */
-            InHouse newPart = new InHouse(-1, partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
-            Inventory.addPart(newPart);
-        } else if (outsourcedPartButton.isSelected()) {
-            String partSource = partSourceText.getText();
-            Outsourced newPart = new Outsourced(-1, partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
-            Inventory.addPart(newPart);
-        }
-        returnToMainPage();
     }
 
     public void returnToMainPage() {

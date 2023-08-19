@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -54,6 +55,13 @@ public class MainController {
         stage.close();
     }
 
+    /**
+     * RUNTIME ERROR: I got a NullPointerException error when the "modify" button was pressed without a
+     * row selected. I am now catching that error and displaying an alert that a row must be selected.
+     *
+     * @param event
+     * @throws IOException
+     */
     public void loadAddPartForm(ActionEvent event) throws IOException {
         addPartButton = (Button) event.getSource();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-part-view.fxml"));
@@ -62,4 +70,29 @@ public class MainController {
         stage.setScene(addPartForm);
         stage.show();
     }
+
+    public void loadModifyPartForm(ActionEvent event) {
+
+        try {
+            Part partToModify = partsInventory.getSelectionModel().getSelectedItem();
+            System.out.println(partToModify.getName());
+
+            addPartButton = (Button) event.getSource();
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modify-part-view.fxml"));
+            Scene addPartForm = new Scene(fxmlLoader.load());
+            stage = (Stage) addPartButton.getScene().getWindow();
+            stage.setScene(addPartForm);
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch (NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Runtime Error: a row must be selected.");
+            alert.showAndWait();
+        }
+
+    }
+
 }
