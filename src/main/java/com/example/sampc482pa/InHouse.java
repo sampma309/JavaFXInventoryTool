@@ -1,6 +1,5 @@
 package com.example.sampc482pa;
 
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class InHouse extends Part {
     private static int id = 100;

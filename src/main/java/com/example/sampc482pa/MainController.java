@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 
 public class MainController {
     @FXML
@@ -31,7 +32,7 @@ public class MainController {
     @FXML
     private TableColumn<Part, Integer> partInvCol;
     @FXML
-    private TableColumn<Part, Double> partPriceOrCostCol;
+    private TableColumn<Part, Number> partPriceOrCostCol;
 
     private Stage stage;
 
@@ -40,10 +41,24 @@ public class MainController {
         try {
             partsInventory.setItems(Inventory.getAllParts());
 
+
             partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
             partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
             partInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
             partPriceOrCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+            partPriceOrCostCol.setCellFactory(cell -> new TableCell<>() {
+                @Override
+                protected void updateItem(Number price, boolean empty) {
+                    super.updateItem(price, empty);
+                    NumberFormat formatter = NumberFormat.getCurrencyInstance();
+                    if (empty) {
+                        setText(null);
+                    } else {
+                        setText(formatter.format(price));
+                    }
+                }
+            });
 
             partsInventory.getColumns().setAll(partIDCol, partNameCol, partInvCol, partPriceOrCostCol);
         }
