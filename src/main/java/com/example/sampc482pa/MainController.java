@@ -109,7 +109,11 @@ public class MainController {
     public void deletePart(ActionEvent event) {
         try {
             Part partToDelete = partsInventory.getSelectionModel().getSelectedItem();
-            Inventory.deletePart(partToDelete);
+            if (Inventory.deletePart(partToDelete)) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Part deleted successfully.");
+                alert.showAndWait();
+            }
         }
         catch (NullPointerException e) {
             e.printStackTrace();
