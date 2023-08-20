@@ -92,7 +92,6 @@ public class MainController {
             ModifyPartController modifyPartController = fxmlLoader.getController();
             modifyPartController.initForm(partToModify, partIdx);
 
-
             stage.show();
         }
         catch (IOException e) {
@@ -105,6 +104,19 @@ public class MainController {
             alert.showAndWait();
         }
 
+    }
+
+    public void deletePart(ActionEvent event) {
+        try {
+            Part partToDelete = partsInventory.getSelectionModel().getSelectedItem();
+            Inventory.deletePart(partToDelete);
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Runtime Error: a row must be selected.");
+            alert.showAndWait();
+        }
     }
 
 }

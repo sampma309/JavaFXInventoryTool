@@ -46,7 +46,7 @@
                <children>
                   <Button fx:id="partAddButton" mnemonicParsing="false" onAction="#loadAddPartForm" text="Add" />
                   <Button fx:id="partModifyButton" mnemonicParsing="false" onAction="#loadModifyPartForm" text="Modify" GridPane.columnIndex="1" />
-                  <Button fx:id="partDeleteButton" mnemonicParsing="false" text="Delete" GridPane.columnIndex="2" />
+                  <Button fx:id="partDeleteButton" mnemonicParsing="false" onAction="#deletePart" text="Delete" GridPane.columnIndex="2" />
                </children>
             </GridPane>
             <TextField fx:id="partsSearchBox" layoutX="303.0" layoutY="13.0" prefHeight="25.0" prefWidth="199.0" promptText="Search by Part ID or Name" />

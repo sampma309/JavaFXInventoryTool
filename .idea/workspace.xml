@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cc038ba-19a4-4432-9c99-00494cfcc30b" name="Changes" comment="Revert next available ID counter to a primitive integer type to match the given UML diagram">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Inventory.java" afterDir="false" />
+    <list default="true" id="9cc038ba-19a4-4432-9c99-00494cfcc30b" name="Changes" comment="Add functionality for modifying existing parts">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/ModifyPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/ModifyPartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sampc482pa/modify-part-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sampc482pa/modify-part-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +119,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692450083050</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add functionality for modifying existing parts">
+      <option name="closed" value="true" />
+      <created>1692554761009</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1692554761009</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -133,7 +137,8 @@
     <MESSAGE value="Main view displays inventory information" />
     <MESSAGE value="Adds id auto-incrementing" />
     <MESSAGE value="Revert next available ID counter to a primitive integer type to match the given UML diagram" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revert next available ID counter to a primitive integer type to match the given UML diagram" />
+    <MESSAGE value="Add functionality for modifying existing parts" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add functionality for modifying existing parts" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
