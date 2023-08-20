@@ -2,7 +2,7 @@ package com.example.sampc482pa;
 
 
 public class Outsourced extends Part {
-    private static int id = 100;
+    private static int id = 200;
     private String companyName;
 
     public Outsourced(int id, String name, double price, int stock, int min, int max, String companyName) {

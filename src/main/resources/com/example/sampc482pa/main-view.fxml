@@ -49,7 +49,7 @@
                   <Button fx:id="partDeleteButton" mnemonicParsing="false" onAction="#deletePart" text="Delete" GridPane.columnIndex="2" />
                </children>
             </GridPane>
-            <TextField fx:id="partsSearchBox" layoutX="303.0" layoutY="13.0" prefHeight="25.0" prefWidth="199.0" promptText="Search by Part ID or Name" />
+            <TextField fx:id="partsSearchBox" layoutX="303.0" layoutY="13.0" onAction="#filterParts" prefHeight="25.0" prefWidth="199.0" promptText="Search by Part ID or Name" />
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />
