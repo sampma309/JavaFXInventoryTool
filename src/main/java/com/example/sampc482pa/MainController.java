@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -71,23 +72,34 @@ public class MainController {
         stage.show();
     }
 
+    /**
+     * Opens the modify part form, and initializes it with the information from the selected row.
+     *
+     * @param event The event that triggers this method
+     */
     public void loadModifyPartForm(ActionEvent event) {
 
         try {
-            Part partToModify = partsInventory.getSelectionModel().getSelectedItem();
-            System.out.println(partToModify.getName());
-
             addPartButton = (Button) event.getSource();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modify-part-view.fxml"));
-            Scene addPartForm = new Scene(fxmlLoader.load());
             stage = (Stage) addPartButton.getScene().getWindow();
-            stage.setScene(addPartForm);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modify-part-view.fxml"));
+            stage.setScene(new Scene(fxmlLoader.load()));
+
+            Part partToModify = partsInventory.getSelectionModel().getSelectedItem();
+            int partIdx = partsInventory.getSelectionModel().getSelectedIndex();
+
+            ModifyPartController modifyPartController = fxmlLoader.getController();
+            modifyPartController.initForm(partToModify, partIdx);
+
+
             stage.show();
         }
         catch (IOException e) {
             e.printStackTrace();
         }
         catch (NullPointerException e) {
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("Runtime Error: a row must be selected.");
             alert.showAndWait();

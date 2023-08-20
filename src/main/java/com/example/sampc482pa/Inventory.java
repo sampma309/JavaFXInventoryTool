@@ -66,7 +66,12 @@ public class Inventory {
     }
 
     public static void updatePart(int index, Part selectedPart) throws Exception {
-        throw new Exception("Not implemented yet");
+        ObservableList<Part> allParts = getAllParts();
+        if (index >= allParts.size()) {
+            throw new Exception("Index out of range.");
+        }
+
+        allParts.set(index, selectedPart);
     }
 
     public static void updateProduct(int index, Product newProduct) throws Exception {

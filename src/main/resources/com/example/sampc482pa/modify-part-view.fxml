@@ -59,12 +59,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <RadioButton fx:id="inHousePartButton" mnemonicParsing="false" onAction="#changePartSource" selected="true" text="In-House">
+            <RadioButton fx:id="inHousePartButton" disable="true" mnemonicParsing="false" onAction="#changePartSource" selected="true" text="In-House">
                <toggleGroup>
                   <ToggleGroup fx:id="formVersionSpecifier" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="outsourcedPartButton" mnemonicParsing="false" onAction="#changePartSource" text="Outsourced" toggleGroup="$formVersionSpecifier" GridPane.columnIndex="1" />
+            <RadioButton fx:id="outsourcedPartButton" disable="true" mnemonicParsing="false" onAction="#changePartSource" text="Outsourced" toggleGroup="$formVersionSpecifier" GridPane.columnIndex="1" />
          </children>
       </GridPane>
       <Label layoutX="58.0" layoutY="45.0" text="Modify Part">
@@ -72,7 +72,7 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="createPartButton" layoutX="211.0" layoutY="353.0" mnemonicParsing="false" text="Save" />
+      <Button fx:id="createPartButton" layoutX="211.0" layoutY="353.0" mnemonicParsing="false" onAction="#updatePart" text="Save" />
       <Button fx:id="cancelButton" layoutX="271.0" layoutY="353.0" mnemonicParsing="false" onAction="#returnToMainPage" text="Cancel" />
    </children>
 </AnchorPane>
