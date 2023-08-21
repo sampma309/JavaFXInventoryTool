@@ -82,10 +82,10 @@
                <children>
                   <Button fx:id="productAddButton" mnemonicParsing="false" onAction="#loadAddProductForm" text="Add" />
                   <Button fx:id="productModifyButton" mnemonicParsing="false" onAction="#loadModifyProductForm" text="Modify" GridPane.columnIndex="1" />
-                  <Button fx:id="productDeleteButton" mnemonicParsing="false" text="Delete" GridPane.columnIndex="2" />
+                  <Button fx:id="productDeleteButton" mnemonicParsing="false" onAction="#deleteProduct" text="Delete" GridPane.columnIndex="2" />
                </children>
             </GridPane>
-            <TextField fx:id="productsSearchBox" layoutX="303.0" layoutY="13.0" prefHeight="25.0" prefWidth="199.0" promptText="Search by Product ID or Name" />
+            <TextField fx:id="productsSearchBox" layoutX="303.0" layoutY="13.0" onAction="#filterProducts" prefHeight="25.0" prefWidth="199.0" promptText="Search by Product ID or Name" />
          </children>
          <padding>
             <Insets left="10.0" right="10.0" />

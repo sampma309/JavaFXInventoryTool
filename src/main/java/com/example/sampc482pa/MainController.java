@@ -21,7 +21,7 @@ public class MainController {
     @FXML
     private Button addPartButton, modifyPartButton, addProductButton, modifyProductButton;
     @FXML
-    private TextField partsSearchBox;
+    private TextField partsSearchBox, productsSearchBox;
 
     @FXML
     private TableView<Part> partsInventory;
@@ -212,6 +212,23 @@ public class MainController {
         }
     }
 
+    public void deleteProduct(ActionEvent event) {
+        try {
+            Product productToDelete = productsInventory.getSelectionModel().getSelectedItem();
+            if (Inventory.deleteProduct(productToDelete)) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Product deleted successfully.");
+                alert.showAndWait();
+            }
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Runtime Error: a row must be selected.");
+            alert.showAndWait();
+        }
+    }
+
     public void filterParts(ActionEvent event) {
         String searchText = partsSearchBox.getText();
 
@@ -224,7 +241,19 @@ public class MainController {
         }
     }
 
-    public void filterPartsByName(String searchName) {
+    public void filterProducts(ActionEvent event) {
+        String searchText = productsSearchBox.getText();
+
+        try {
+            int searchID = Integer.parseInt(searchText);
+            filterProductsByID(searchID);
+        }
+        catch (NumberFormatException e) {
+            filterProductsByName(searchText);
+        }
+    }
+
+    private void filterPartsByName(String searchName) {
 
         ObservableList<Part> foundParts;
         try {
@@ -244,10 +273,32 @@ public class MainController {
             alert.setContentText(e.getMessage());
             alert.showAndWait();
         }
-
     }
 
-    public void filterPartsByID(int searchID) {
+    private void filterProductsByName(String searchName) {
+
+        ObservableList<Product> foundProducts;
+        try {
+            foundProducts = Inventory.lookupProduct(searchName);
+            productsInventory.setItems(foundProducts);
+
+            productIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+            productNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+            productInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+            productPriceOrCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+            productsInventory.getColumns().setAll(productIDCol, productNameCol, productInvCol, productPriceOrCostCol);
+
+        }
+        catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+
+    private void filterPartsByID(int searchID) {
         Part foundPart;
         ObservableList<Part> foundParts = FXCollections.observableArrayList();
         try {
@@ -261,6 +312,28 @@ public class MainController {
             partPriceOrCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
 
             partsInventory.getColumns().setAll(partIDCol, partNameCol, partInvCol, partPriceOrCostCol);
+        }
+        catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    private void filterProductsByID(int searchID) {
+        Product foundProduct;
+        ObservableList<Product> foundProducts = FXCollections.observableArrayList();
+        try {
+            foundProduct = Inventory.lookupProduct(searchID);
+            foundProducts.add(foundProduct);
+            productsInventory.setItems(foundProducts);
+
+            productIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+            productNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+            productInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+            productPriceOrCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+            productsInventory.getColumns().setAll(productIDCol, productNameCol, productInvCol, productPriceOrCostCol);
         }
         catch (Exception e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
