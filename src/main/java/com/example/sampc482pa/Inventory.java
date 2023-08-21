@@ -45,7 +45,7 @@ public class Inventory {
         if (!foundParts.isEmpty()) {
             return foundParts;
         } else {
-            throw new Exception("No parts found");
+            throw new Exception("Part not found");
         }
     }
 
@@ -61,7 +61,7 @@ public class Inventory {
         if (!foundProducts.isEmpty()) {
             return foundProducts;
         } else {
-            throw new Exception();
+            throw new Exception("Product not found");
         }
     }
 
@@ -75,7 +75,11 @@ public class Inventory {
     }
 
     public static void updateProduct(int index, Product newProduct) throws Exception {
-        throw new Exception("Not implemented yet");
+        if (index >= allProducts.size()) {
+            throw new Exception("Index out of range.");
+        }
+
+        allProducts.set(index, newProduct);
     }
 
     public static boolean deletePart(Part selectedPart) {

@@ -47,9 +47,10 @@ public class AddPartController {
             Outsourced newPart = new Outsourced(-1, partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
             Inventory.addPart(newPart);
         }
-        Utilities.navigateToNewPage(event, "main-view.fxml");
+        returnToMainPage(event);
     }
 
-    public void returnToMainPage() {
+    public void returnToMainPage(ActionEvent event) {
+        Utilities.navigateToNewPage(event, "main-view.fxml");
     }
 }

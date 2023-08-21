@@ -1,40 +1,22 @@
 package com.example.sampc482pa;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
-
-import java.io.IOException;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 
 public class ModifyPartController {
     @FXML
-    private Label partIDLabel, partNameLabel, partInvLabel, partPriceOrCostLabel,
-            partInvMinLabel, partInvMaxLabel, partSourceLabel;
+    private Label partSourceLabel;
     @FXML
     private TextField partIDText, partNameText, partInvText, partPriceOrCostText,
             partInvMaxText, partInvMinText, partSourceText;
     @FXML
     private RadioButton inHousePartButton, outsourcedPartButton;
-    @FXML
-    private Button createPartButton, cancelButton;
 
     private int partIndex;
 
-    Stage stage;
-
-//    void initialize() {
-//        partIDText = new TextField();
-//        partNameText = new TextField();
-//        partInvText = new TextField();
-//        partPriceOrCostText = new TextField();
-//        partInvMaxText = new TextField();
-//        partInvMinText = new TextField();
-//        partSourceText = new TextField();
-//    }
 
     public <T extends Part> void initForm(T modifiedPart, int partIdx) {
         partIDText.setText(Integer.toString(modifiedPart.getId()));
@@ -56,8 +38,7 @@ public class ModifyPartController {
         partIndex = partIdx;
     }
 
-    public void updatePart() {
-
+    public void updatePart(ActionEvent event) {
         String updatedName = partNameText.getText();
         int updatedStock = Integer.parseInt(partInvText.getText());
         double updatedPriceOrCost = Double.parseDouble((partPriceOrCostText.getText()));
@@ -71,7 +52,7 @@ public class ModifyPartController {
                 Inventory.updatePart(partIndex, updatedPart);
             }
             catch (Exception e) {
-                e.printStackTrace();
+                Exceptions.displayErrorAlert(e);
             }
         } else {
             String updatedCompanyName = partSourceText.getText();
@@ -80,10 +61,10 @@ public class ModifyPartController {
                 Inventory.updatePart(partIndex, updatedPart);
             }
             catch (Exception e) {
-                e.printStackTrace();
+                Exceptions.displayErrorAlert(e);
             }
         }
-        returnToMainPage();
+        returnToMainPage(event);
     }
 
     public void changePartSource(ActionEvent event) {
@@ -95,16 +76,7 @@ public class ModifyPartController {
         }
     }
 
-    public void returnToMainPage() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-view.fxml"));
-            Scene addPartForm = new Scene(fxmlLoader.load());
-            stage = (Stage) createPartButton.getScene().getWindow();
-            stage.setScene(addPartForm);
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void returnToMainPage(ActionEvent event) {
+        Utilities.navigateToNewPage(event, "main-view.fxml");
     }
 }
