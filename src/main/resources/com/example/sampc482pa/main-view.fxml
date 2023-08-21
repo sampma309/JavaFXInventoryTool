@@ -57,12 +57,12 @@
       </AnchorPane>
       <AnchorPane layoutX="554.0" layoutY="64.0" prefHeight="301.0" prefWidth="524.0" style="-fx-border-color: BLACK; -fx-border-radius: 10;">
          <children>
-            <TableView fx:id="productsTable" layoutX="22.0" layoutY="50.0" prefHeight="180.0" prefWidth="378.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
+            <TableView fx:id="productsInventory" layoutX="22.0" layoutY="50.0" prefHeight="180.0" prefWidth="378.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
                <columns>
-                  <TableColumn prefWidth="72.3333740234375" text="Product ID" />
-                  <TableColumn prefWidth="167.6666259765625" text="Product Name" />
-                  <TableColumn prefWidth="100.0" text="Inventory Level" />
-                  <TableColumn prefWidth="144.5" text="Price/Cost per Unit" />
+                  <TableColumn fx:id="productIDCol" prefWidth="72.3333740234375" text="Product ID" />
+                  <TableColumn fx:id="productNameCol" prefWidth="167.6666259765625" text="Product Name" />
+                  <TableColumn fx:id="productInvCol" prefWidth="100.0" text="Inventory Level" />
+                  <TableColumn fx:id="productPriceOrCostCol" prefWidth="144.5" text="Price/Cost per Unit" />
                </columns>
             </TableView>
             <Label layoutX="32.0" layoutY="17.0" text="Products">
@@ -80,8 +80,8 @@
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Button fx:id="productAddButton" mnemonicParsing="false" text="Add" />
-                  <Button fx:id="productModifyButton" mnemonicParsing="false" text="Modify" GridPane.columnIndex="1" />
+                  <Button fx:id="productAddButton" mnemonicParsing="false" onAction="#loadAddProductForm" text="Add" />
+                  <Button fx:id="productModifyButton" mnemonicParsing="false" onAction="#loadModifyProductForm" text="Modify" GridPane.columnIndex="1" />
                   <Button fx:id="productDeleteButton" mnemonicParsing="false" text="Delete" GridPane.columnIndex="2" />
                </children>
             </GridPane>

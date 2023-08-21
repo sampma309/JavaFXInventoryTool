@@ -19,7 +19,7 @@ public class MainController {
     @FXML
     private Button exitButton;
     @FXML
-    private Button addPartButton, modifyPartButton;
+    private Button addPartButton, modifyPartButton, addProductButton, modifyProductButton;
     @FXML
     private TextField partsSearchBox;
 
@@ -34,13 +34,25 @@ public class MainController {
     @FXML
     private TableColumn<Part, Number> partPriceOrCostCol;
 
+    @FXML
+    private TableView<Product> productsInventory;
+    @FXML
+    private TableColumn<Product, Integer> productIDCol;
+    @FXML
+    private TableColumn<Product, String> productNameCol;
+    @FXML
+    private TableColumn<Product, Integer> productInvCol;
+    @FXML
+    private TableColumn<Product, Number> productPriceOrCostCol;
+
+
     private Stage stage;
 
     @FXML
     public void initialize() {
         try {
+            // Set parts table
             partsInventory.setItems(Inventory.getAllParts());
-
 
             partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
             partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -61,7 +73,30 @@ public class MainController {
             });
 
             partsInventory.getColumns().setAll(partIDCol, partNameCol, partInvCol, partPriceOrCostCol);
-        }
+
+            // Set products table
+            productsInventory.setItems(Inventory.getAllProducts());
+
+            productIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+            productNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+            productInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
+            productPriceOrCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+            productPriceOrCostCol.setCellFactory(cell -> new TableCell<>() {
+                @Override
+                protected void updateItem(Number price, boolean empty) {
+                    super.updateItem(price, empty);
+                    NumberFormat formatter = NumberFormat.getCurrencyInstance();
+                    if (empty) {
+                        setText(null);
+                    } else {
+                        setText(formatter.format(price));
+                    }
+                }
+            });
+
+            productsInventory.getColumns().setAll(productIDCol, productNameCol, productInvCol, productPriceOrCostCol);
+    }
         catch (Exception e) {
             System.out.println("Failed to display table rows");
             e.printStackTrace();
@@ -74,8 +109,6 @@ public class MainController {
     }
 
     /**
-     * RUNTIME ERROR: I got a NullPointerException error when the "modify" button was pressed without a
-     * row selected. I am now catching that error and displaying an alert that a row must be selected.
      *
      * @param event
      * @throws IOException
@@ -89,7 +122,18 @@ public class MainController {
         stage.show();
     }
 
+    public void loadAddProductForm(ActionEvent event) throws IOException {
+        addProductButton = (Button) event.getSource();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-product-view.fxml"));
+        Scene addProductForm = new Scene(fxmlLoader.load());
+        stage = (Stage) addProductButton.getScene().getWindow();
+        stage.setScene(addProductForm);
+        stage.show();
+    }
+
     /**
+     * RUNTIME ERROR: I got a NullPointerException error when the "modify" button was pressed without a
+     * row selected. I am now catching that error and displaying an alert that a row must be selected.
      * Opens the modify part form, and initializes it with the information from the selected row.
      *
      * @param event The event that triggers this method
@@ -121,6 +165,34 @@ public class MainController {
             alert.showAndWait();
         }
 
+    }
+
+    public void loadModifyProductForm(ActionEvent event) {
+
+        try {
+            modifyProductButton = (Button) event.getSource();
+            stage = (Stage) modifyProductButton.getScene().getWindow();
+
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("modify-product-view.fxml"));
+            stage.setScene(new Scene(fxmlLoader.load()));
+
+            Product productToModify = productsInventory.getSelectionModel().getSelectedItem();
+            int productIdx = productsInventory.getSelectionModel().getSelectedIndex();
+
+            ModifyProductController modifyProductController = fxmlLoader.getController();
+            modifyProductController.initForm(productToModify, productIdx);
+
+            stage.show();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Runtime Error: a row must be selected.");
+            alert.showAndWait();
+        }
     }
 
     public void deletePart(ActionEvent event) {

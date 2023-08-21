@@ -63,7 +63,7 @@ public class AddPartController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-view.fxml"));
             Scene addPartForm = new Scene(fxmlLoader.load());
-            stage = (Stage) createPartButton.getScene().getWindow();
+            stage = (Stage) cancelButton.getScene().getWindow();
             stage.setScene(addPartForm);
             stage.show();
         }

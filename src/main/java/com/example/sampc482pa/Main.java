@@ -18,7 +18,10 @@ public class Main extends Application {
         Inventory.addPart(p1);
         Inventory.addPart(p2);
         ObservableList<Part> parts = Inventory.getAllParts();
-        System.out.println(parts);
+        Product car = new Product(-1, "car", 4000.00, 2, 1, 40);
+        car.addAssociatedPart(p1);
+        car.addAssociatedPart(p2);
+        Inventory.addProduct(car);
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-view.fxml"));
