@@ -13,15 +13,27 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        InHouse p1 = new InHouse(-1, "wheel", 2.00, 1, 1, 1, 1);
-        Outsourced p2 = new Outsourced(-1, "engine", 4.00, 1, 1, 1, "company a");
-        Inventory.addPart(p1);
-        Inventory.addPart(p2);
+        InHouse wheel = new InHouse(-1, "Wheel", 72.00, 152, 0, 500, 1);
+        Outsourced engine = new Outsourced(-1, "Engine", 2300.00, 7, 0, 25, "Cummins");
+        InHouse windshield = new InHouse(-1, "Windshield", 540.00, 12, 0, 50, 2);
+        Outsourced handles = new Outsourced(-1, "Handlebars", 30.00, 23, 0, 90, "Huffy");
+        InHouse paint = new InHouse(-1, "Paint (green)", 15.00, 50, 0, 420, 3);
+        Inventory.addPart(wheel);
+        Inventory.addPart(engine);
+        Inventory.addPart(windshield);
+        Inventory.addPart(handles);
+        Inventory.addPart(paint);
         ObservableList<Part> parts = Inventory.getAllParts();
-        Product car = new Product(-1, "car", 4000.00, 2, 1, 40);
-        car.addAssociatedPart(p1);
-        car.addAssociatedPart(p2);
+        Product car = new Product(-1, "Car", 4000.00, 2, 1, 40);
+        Product bike = new Product(-1, "Bike", 400.00, 13, 0, 35);
+        car.addAssociatedPart(wheel);
+        car.addAssociatedPart(engine);
+        car.addAssociatedPart(paint);
+        bike.addAssociatedPart(wheel);
+        bike.addAssociatedPart(handles);
+        bike.addAssociatedPart(paint);
         Inventory.addProduct(car);
+        Inventory.addProduct(bike);
 
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-view.fxml"));

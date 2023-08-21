@@ -26,15 +26,15 @@ public class ModifyPartController {
 
     Stage stage;
 
-    void initialize() {
-        partIDText = new TextField();
-        partNameText = new TextField();
-        partInvText = new TextField();
-        partPriceOrCostText = new TextField();
-        partInvMaxText = new TextField();
-        partInvMinText = new TextField();
-        partSourceText = new TextField();
-    }
+//    void initialize() {
+//        partIDText = new TextField();
+//        partNameText = new TextField();
+//        partInvText = new TextField();
+//        partPriceOrCostText = new TextField();
+//        partInvMaxText = new TextField();
+//        partInvMinText = new TextField();
+//        partSourceText = new TextField();
+//    }
 
     public <T extends Part> void initForm(T modifiedPart, int partIdx) {
         partIDText.setText(Integer.toString(modifiedPart.getId()));

@@ -2,15 +2,9 @@ package com.example.sampc482pa;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class AddPartController {
     @FXML
@@ -21,10 +15,7 @@ public class AddPartController {
             partInvMaxText, partInvMinText, partSourceText;
     @FXML
     private RadioButton inHousePartButton, outsourcedPartButton;
-    @FXML
-    private Button createPartButton, cancelButton;
 
-    Stage stage;
 
     public void changePartSource(ActionEvent event) {
         RadioButton eventSrc = (RadioButton) event.getSource();
@@ -56,19 +47,9 @@ public class AddPartController {
             Outsourced newPart = new Outsourced(-1, partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
             Inventory.addPart(newPart);
         }
-        returnToMainPage();
+        Utilities.navigateToNewPage(event, "main-view.fxml");
     }
 
     public void returnToMainPage() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("main-view.fxml"));
-            Scene addPartForm = new Scene(fxmlLoader.load());
-            stage = (Stage) cancelButton.getScene().getWindow();
-            stage.setScene(addPartForm);
-            stage.show();
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

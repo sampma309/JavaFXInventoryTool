@@ -53,50 +53,14 @@ public class MainController {
         try {
             // Set parts table
             partsInventory.setItems(Inventory.getAllParts());
-
-            partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-            partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-            partInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-            partPriceOrCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-            partPriceOrCostCol.setCellFactory(cell -> new TableCell<>() {
-                @Override
-                protected void updateItem(Number price, boolean empty) {
-                    super.updateItem(price, empty);
-                    NumberFormat formatter = NumberFormat.getCurrencyInstance();
-                    if (empty) {
-                        setText(null);
-                    } else {
-                        setText(formatter.format(price));
-                    }
-                }
-            });
-
+            Utilities.formatTable(partIDCol, partNameCol, partInvCol, partPriceOrCostCol);
             partsInventory.getColumns().setAll(partIDCol, partNameCol, partInvCol, partPriceOrCostCol);
 
             // Set products table
             productsInventory.setItems(Inventory.getAllProducts());
-
-            productIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-            productNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-            productInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-            productPriceOrCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-            productPriceOrCostCol.setCellFactory(cell -> new TableCell<>() {
-                @Override
-                protected void updateItem(Number price, boolean empty) {
-                    super.updateItem(price, empty);
-                    NumberFormat formatter = NumberFormat.getCurrencyInstance();
-                    if (empty) {
-                        setText(null);
-                    } else {
-                        setText(formatter.format(price));
-                    }
-                }
-            });
-
+            Utilities.formatTable(productIDCol, productNameCol, productInvCol, productPriceOrCostCol);
             productsInventory.getColumns().setAll(productIDCol, productNameCol, productInvCol, productPriceOrCostCol);
-    }
+        }
         catch (Exception e) {
             System.out.println("Failed to display table rows");
             e.printStackTrace();
@@ -113,22 +77,12 @@ public class MainController {
      * @param event
      * @throws IOException
      */
-    public void loadAddPartForm(ActionEvent event) throws IOException {
-        addPartButton = (Button) event.getSource();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-part-view.fxml"));
-        Scene addPartForm = new Scene(fxmlLoader.load());
-        stage = (Stage) addPartButton.getScene().getWindow();
-        stage.setScene(addPartForm);
-        stage.show();
+    public void loadAddPartForm(ActionEvent event) {
+        Utilities.navigateToNewPage(event, "add-part-view.fxml");
     }
 
-    public void loadAddProductForm(ActionEvent event) throws IOException {
-        addProductButton = (Button) event.getSource();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("add-product-view.fxml"));
-        Scene addProductForm = new Scene(fxmlLoader.load());
-        stage = (Stage) addProductButton.getScene().getWindow();
-        stage.setScene(addProductForm);
-        stage.show();
+    public void loadAddProductForm(ActionEvent event) {
+        Utilities.navigateToNewPage(event, "add-product-view.fxml");
     }
 
     /**
@@ -177,10 +131,9 @@ public class MainController {
             stage.setScene(new Scene(fxmlLoader.load()));
 
             Product productToModify = productsInventory.getSelectionModel().getSelectedItem();
-            int productIdx = productsInventory.getSelectionModel().getSelectedIndex();
 
             ModifyProductController modifyProductController = fxmlLoader.getController();
-            modifyProductController.initForm(productToModify, productIdx);
+            modifyProductController.initForm(productToModify);
 
             stage.show();
         }
@@ -259,12 +212,7 @@ public class MainController {
         try {
             foundParts = Inventory.lookupPart(searchName);
             partsInventory.setItems(foundParts);
-
-            partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-            partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-            partInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-            partPriceOrCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-
+            Utilities.formatTable(partIDCol, partNameCol, partInvCol, partPriceOrCostCol);
             partsInventory.getColumns().setAll(partIDCol, partNameCol, partInvCol, partPriceOrCostCol);
 
         }
@@ -281,12 +229,7 @@ public class MainController {
         try {
             foundProducts = Inventory.lookupProduct(searchName);
             productsInventory.setItems(foundProducts);
-
-            productIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-            productNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-            productInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-            productPriceOrCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-
+            Utilities.formatTable(productIDCol, productNameCol, productInvCol, productPriceOrCostCol);
             productsInventory.getColumns().setAll(productIDCol, productNameCol, productInvCol, productPriceOrCostCol);
 
         }
@@ -305,12 +248,7 @@ public class MainController {
             foundPart = Inventory.lookupPart(searchID);
             foundParts.add(foundPart);
             partsInventory.setItems(foundParts);
-
-            partIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-            partNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-            partInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-            partPriceOrCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-
+            Utilities.formatTable(partIDCol, partNameCol, partInvCol, partPriceOrCostCol);
             partsInventory.getColumns().setAll(partIDCol, partNameCol, partInvCol, partPriceOrCostCol);
         }
         catch (Exception e) {
@@ -327,12 +265,7 @@ public class MainController {
             foundProduct = Inventory.lookupProduct(searchID);
             foundProducts.add(foundProduct);
             productsInventory.setItems(foundProducts);
-
-            productIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-            productNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-            productInvCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-            productPriceOrCostCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-
+            Utilities.formatTable(productIDCol, productNameCol, productInvCol, productPriceOrCostCol);
             productsInventory.getColumns().setAll(productIDCol, productNameCol, productInvCol, productPriceOrCostCol);
         }
         catch (Exception e) {
