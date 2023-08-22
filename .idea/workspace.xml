@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cc038ba-19a4-4432-9c99-00494cfcc30b" name="Changes" comment="Adds utilities to reduce code duplication and improve readability">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/IDCounters.java" afterDir="false" />
+    <list default="true" id="9cc038ba-19a4-4432-9c99-00494cfcc30b" name="Changes" comment="Adds IDCounter class that keeps track of the next available IDs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddPartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/InHouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/InHouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Outsourced.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Outsourced.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/ModifyPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/ModifyPartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Utilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Utilities.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -200,7 +195,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692659584267</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Adds IDCounter class that keeps track of the next available IDs">
+      <option name="closed" value="true" />
+      <created>1692666414943</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1692666414943</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -217,7 +220,8 @@
     <MESSAGE value="Adds Product forms" />
     <MESSAGE value="Add delete product functionality" />
     <MESSAGE value="Adds utilities to reduce code duplication and improve readability" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adds utilities to reduce code duplication and improve readability" />
+    <MESSAGE value="Adds IDCounter class that keeps track of the next available IDs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adds IDCounter class that keeps track of the next available IDs" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

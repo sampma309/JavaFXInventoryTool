@@ -23,7 +23,6 @@ public class MainController {
     @FXML
     private TableView<Product> productsInventory;
 
-
     private Stage stage;
 
     @FXML

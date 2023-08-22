@@ -15,54 +15,67 @@ public class ModifyPartController {
     @FXML
     private RadioButton inHousePartButton, outsourcedPartButton;
 
+    private Part updatedPart;
     private int partIndex;
 
 
-    public <T extends Part> void initForm(T modifiedPart, int partIdx) {
-        partIDText.setText(Integer.toString(modifiedPart.getId()));
-        partNameText.setText(modifiedPart.getName());
-        partInvText.setText(Integer.toString(modifiedPart.getStock()));
-        partPriceOrCostText.setText(Double.toString(modifiedPart.getPrice()));
-        partInvMaxText.setText(Integer.toString(modifiedPart.getMax()));
-        partInvMinText.setText(Integer.toString(modifiedPart.getMin()));
+    public <T extends Part> void initForm(T partToModify, int partIdx) {
+        partIDText.setText(Integer.toString(partToModify.getId()));
+        partNameText.setText(partToModify.getName());
+        partInvText.setText(Integer.toString(partToModify.getStock()));
+        partPriceOrCostText.setText(Double.toString(partToModify.getPrice()));
+        partInvMaxText.setText(Integer.toString(partToModify.getMax()));
+        partInvMinText.setText(Integer.toString(partToModify.getMin()));
 
         // Set form version based on part type
-        if (modifiedPart instanceof InHouse) {
-            partSourceText.setText(Integer.toString(((InHouse) modifiedPart).getMachineId()));
+        if (partToModify instanceof InHouse) {
+            partSourceText.setText(Integer.toString(((InHouse) partToModify).getMachineId()));
             inHousePartButton.setSelected(true);
-        } else if (modifiedPart instanceof Outsourced) {
-            partSourceText.setText(((Outsourced) modifiedPart).getCompanyName());
+            updatedPart = new InHouse(
+                    partToModify.getId(),
+                    partToModify.getName(),
+                    partToModify.getPrice(),
+                    partToModify.getStock(),
+                    partToModify.getMin(),
+                    partToModify.getMax(),
+                    ((InHouse) partToModify).getMachineId()
+            );
+        } else if (partToModify instanceof Outsourced) {
+            partSourceText.setText(((Outsourced) partToModify).getCompanyName());
             outsourcedPartButton.setSelected(true);
+            updatedPart = new Outsourced(
+                    partToModify.getId(),
+                    partToModify.getName(),
+                    partToModify.getPrice(),
+                    partToModify.getStock(),
+                    partToModify.getMin(),
+                    partToModify.getMax(),
+                    ((Outsourced) partToModify).getCompanyName()
+            );
         }
 
         partIndex = partIdx;
     }
 
     public void updatePart(ActionEvent event) {
-        String updatedName = partNameText.getText();
-        int updatedStock = Integer.parseInt(partInvText.getText());
-        double updatedPriceOrCost = Double.parseDouble((partPriceOrCostText.getText()));
-        int updatedInvMax = Integer.parseInt(partInvMaxText.getText());
-        int updateInvMin = Integer.parseInt(partInvMinText.getText());
+
+        updatedPart.setName(partNameText.getText());
+        updatedPart.setStock(Integer.parseInt(partInvText.getText()));
+        updatedPart.setPrice(Double.parseDouble((partPriceOrCostText.getText())));
+        updatedPart.setMin(Integer.parseInt(partInvMinText.getText()));
+        updatedPart.setMax(Integer.parseInt(partInvMaxText.getText()));
 
         if (inHousePartButton.isSelected()) {
-            int updatedMachineId = Integer.parseInt(partSourceText.getText());
-            InHouse updatedPart = new InHouse(-1, updatedName, updatedPriceOrCost, updatedStock, updateInvMin, updatedInvMax, updatedMachineId);
-            try {
-                Inventory.updatePart(partIndex, updatedPart);
-            }
-            catch (Exception e) {
-                Exceptions.displayErrorAlert(e);
-            }
+            ((InHouse)updatedPart).setMachineId(Integer.parseInt(partSourceText.getText()));
         } else {
-            String updatedCompanyName = partSourceText.getText();
-            Outsourced updatedPart = new Outsourced(-1, updatedName, updatedPriceOrCost, updatedStock, updateInvMin, updatedInvMax, updatedCompanyName);
-            try {
-                Inventory.updatePart(partIndex, updatedPart);
-            }
-            catch (Exception e) {
-                Exceptions.displayErrorAlert(e);
-            }
+            ((Outsourced) updatedPart).setCompanyName(partSourceText.getText());
+        }
+
+        try {
+            Inventory.updatePart(partIndex, updatedPart);
+        }
+        catch (Exception e) {
+            Exceptions.displayErrorAlert(e);
         }
         returnToMainPage(event);
     }
