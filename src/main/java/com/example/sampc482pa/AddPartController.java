@@ -27,27 +27,35 @@ public class AddPartController {
     }
 
     public void createPart(ActionEvent event) {
+        try {
 
-        String partName = partNameText.getText();
-        int partStock = Integer.parseInt(partInvText.getText());
-        double partPriceOrCost = Double.parseDouble(partPriceOrCostText.getText());
-        int partInvMax = Integer.parseInt(partInvMaxText.getText());
-        int partInvMin = Integer.parseInt(partInvMinText.getText());
+            String partName = partNameText.getText();
+            int partStock = Integer.parseInt(partInvText.getText());
+            double partPriceOrCost = Double.parseDouble(partPriceOrCostText.getText());
+            int partInvMax = Integer.parseInt(partInvMaxText.getText());
+            int partInvMin = Integer.parseInt(partInvMinText.getText());
 
-        if (inHousePartButton.isSelected()) {
-            int partSource = Integer.parseInt(partSourceText.getText());
+            Utilities.validatePartInventory(partStock, partInvMin, partInvMax);
 
-            /* passing -1 as the ID is purely so the constructor matches the one given in the UML
-            diagram. In a real project, I wouldn't do this and instead use an AtomicInteger
-            to keep track of the next available part/product ID number */
-            InHouse newPart = new InHouse(IDCounters.getNextAvailablePartID(), partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
-            Inventory.addPart(newPart);
-        } else if (outsourcedPartButton.isSelected()) {
-            String partSource = partSourceText.getText();
-            Outsourced newPart = new Outsourced(IDCounters.getNextAvailablePartID(), partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
-            Inventory.addPart(newPart);
+            if (inHousePartButton.isSelected()) {
+                int partSource = Integer.parseInt(partSourceText.getText());
+
+                InHouse newPart = new InHouse(IDCounters.getNextAvailablePartID(), partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
+                Inventory.addPart(newPart);
+            } else if (outsourcedPartButton.isSelected()) {
+                String partSource = partSourceText.getText();
+                Outsourced newPart = new Outsourced(IDCounters.getNextAvailablePartID(), partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
+                Inventory.addPart(newPart);
+            }
+
+            returnToMainPage(event);
         }
-        returnToMainPage(event);
+        catch (NumberFormatException e) {
+            Exceptions.displayNumberFormattingErrorAlert(e);
+        }
+        catch (Exception e) {
+            Exceptions.displayErrorAlert(e);
+        }
     }
 
     public void returnToMainPage(ActionEvent event) {

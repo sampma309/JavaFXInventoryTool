@@ -29,4 +29,11 @@ public abstract class Exceptions {
         alert.setContentText(e.getMessage());
         alert.showAndWait();
     }
+
+    public static void displayNumberFormattingErrorAlert(Exception e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText("Number formatting error");
+        alert.setContentText(e.getMessage());
+        alert.showAndWait();
+    }
 }

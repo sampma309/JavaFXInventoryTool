@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cc038ba-19a4-4432-9c99-00494cfcc30b" name="Changes" comment="Adds IDCounter class that keeps track of the next available IDs">
+    <list default="true" id="9cc038ba-19a4-4432-9c99-00494cfcc30b" name="Changes" comment="Structured AddPartController to be more similar to AddProductController">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddPartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Exceptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Exceptions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/ModifyPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/ModifyPartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/ModifyProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/ModifyProductController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Utilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Utilities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sampc482pa/add-product-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sampc482pa/add-product-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/sampc482pa/modify-product-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/sampc482pa/modify-product-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692666414943</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Structured AddPartController to be more similar to AddProductController">
+      <option name="closed" value="true" />
+      <created>1692669166478</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1692669166478</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -221,7 +234,8 @@
     <MESSAGE value="Add delete product functionality" />
     <MESSAGE value="Adds utilities to reduce code duplication and improve readability" />
     <MESSAGE value="Adds IDCounter class that keeps track of the next available IDs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adds IDCounter class that keeps track of the next available IDs" />
+    <MESSAGE value="Structured AddPartController to be more similar to AddProductController" />
+    <option name="LAST_COMMIT_MESSAGE" value="Structured AddPartController to be more similar to AddProductController" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

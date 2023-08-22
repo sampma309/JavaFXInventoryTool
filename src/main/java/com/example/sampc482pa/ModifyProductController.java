@@ -3,7 +3,6 @@ package com.example.sampc482pa;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
@@ -32,7 +31,7 @@ public class ModifyProductController {
         loadAssociatedPartsTable(productToModify.getAllAssociatedParts());
 
         modifiedProduct = Utilities.copyProduct(productToModify);
-        this.productIndex = productIdx;
+        productIndex = productIdx;
     }
 
     private void loadAvailablePartsTable(ObservableList<Part> availableParts) {
@@ -47,8 +46,13 @@ public class ModifyProductController {
 
     public void addAssociatedPart() {
         Part associatedPart = availablePartsTable.getSelectionModel().getSelectedItem();
-
         modifiedProduct.addAssociatedPart(associatedPart);
+        loadAssociatedPartsTable(modifiedProduct.getAllAssociatedParts());
+    }
+
+    public void removeAssociatedPart() {
+        Part partToRemove = associatedPartsTable.getSelectionModel().getSelectedItem();
+        modifiedProduct.deleteAssociatedPart(partToRemove);
         loadAssociatedPartsTable(modifiedProduct.getAllAssociatedParts());
     }
 
@@ -60,13 +64,16 @@ public class ModifyProductController {
             modifiedProduct.setMax(Integer.parseInt(productInvMaxText.getText()));
             modifiedProduct.setMin(Integer.parseInt(productInvMinText.getText()));
 
+            Utilities.validateProductInventory(modifiedProduct);
+
             Inventory.updateProduct(productIndex, modifiedProduct);
             Utilities.navigateToNewPage(event, "main-view.fxml");
         }
+        catch (NumberFormatException e) {
+            Exceptions.displayNumberFormattingErrorAlert(e);
+        }
         catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText(e.getMessage());
-            alert.showAndWait();
+            Exceptions.displayErrorAlert(e);
         }
     }
 

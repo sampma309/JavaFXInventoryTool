@@ -29,9 +29,12 @@ public class AddProductController {
 
     public void addAssociatedPart() {
         Part associatedPart = availablePartsTable.getSelectionModel().getSelectedItem();
-
         associatedParts.add(associatedPart);
-        associatedPartsTable.setItems(associatedParts);
+    }
+
+    public void removeAssociatedPart() {
+        Part partToRemove = associatedPartsTable.getSelectionModel().getSelectedItem();
+        associatedParts.remove(partToRemove);
     }
 
     public void createProduct(ActionEvent event) {
@@ -55,29 +58,34 @@ public class AddProductController {
             newProductPriceOrCost = Double.parseDouble(productPriceOrCostText.getText());
             newProductInvMax = Integer.parseInt(productStockMaxText.getText());
             newProductInvMin = Integer.parseInt(productStockMinText.getText());
+
+            Utilities.validateProductInventory(newProductStock, newProductInvMin, newProductInvMax);
+            Utilities.atLeastOneAssociatedPart(associatedParts);
+
+            Product newProduct = new Product(
+                    IDCounters.getNextAvailableProductID(),
+                    newProductName,
+                    newProductPriceOrCost,
+                    newProductStock,
+                    newProductInvMin,
+                    newProductInvMax
+            );
+
+            for (Part p : associatedParts) {
+                newProduct.addAssociatedPart(p);
+            }
+
+            Inventory.addProduct(newProduct);
+            return true;
         }
         catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Invalid field entry: " + e.getMessage());
-            alert.showAndWait();
+            Exceptions.displayNumberFormattingErrorAlert(e);
             return false;
         }
-
-        if (associatedParts.isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("You must associated at least one part with this product.");
-            alert.showAndWait();
+        catch (Exception e) {
+            Exceptions.displayErrorAlert(e);
             return false;
         }
-
-        Product newProduct = new Product(IDCounters.getNextAvailableProductID(), newProductName, newProductPriceOrCost, newProductStock, newProductInvMin, newProductInvMax);
-
-        for (Part p : associatedParts) {
-            newProduct.addAssociatedPart(p);
-        }
-
-        Inventory.addProduct(newProduct);
-        return true;
     }
 
     public void returnToMainPage(ActionEvent event) {

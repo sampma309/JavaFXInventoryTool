@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -101,6 +102,70 @@ public abstract class Utilities {
         }
 
         return newProduct;
+    }
+
+    public static void displayAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public static void validatePartInventory(Part part) throws Exception {
+        if (part.getStock() < part.getMin() || part.getStock() > part.getMax()) {
+            throw new Exception("Part stock must be between the inventory bounds");
+        }
+
+        if (part.getMin() < 0) {
+            throw new Exception("Minimum stock must be at least 0");
+        }
+    }
+
+    public static void validatePartInventory(int stock, int min, int max) throws Exception {
+        if (max < min) {
+            throw new Exception("Maximum stock must be greater than minimum stock");
+        }
+
+        if (stock < min || stock > max) {
+            throw new Exception("Part stock must be between the inventory bounds");
+        }
+
+        if (min < 0) {
+            throw new Exception("Minimum stock must be at least 0");
+        }
+    }
+
+    public static void validateProductInventory(Product product) throws Exception {
+        if (product.getStock() < product.getMin() || product.getStock() > product.getMax()) {
+            throw new Exception("Part stock must be between the inventory bounds");
+        }
+
+        if (product.getMin() < 0) {
+            throw new Exception("Minimum stock must be at least 0");
+        }
+
+        if (product.getMax() < product.getMin()) {
+            throw new Exception("Maximum stock must be greater than minimum stock");
+        }
+    }
+
+    public static void validateProductInventory(int stock, int min, int max) throws Exception {
+        if (max < min) {
+            throw new Exception("Maximum stock must be greater than minimum stock");
+        }
+
+        if (stock < min || stock > max) {
+            throw new Exception("Product stock must be between the inventory bounds");
+        }
+
+        if (min < 0) {
+            throw new Exception("Minimum stock must be at least 0");
+        }
+    }
+
+    public static void atLeastOneAssociatedPart(ObservableList<Part> parts) throws Exception {
+        if (parts.isEmpty()) {
+            throw new Exception("You must associate at least one part with this product");
+        }
     }
 
     public static void main(String[] args){

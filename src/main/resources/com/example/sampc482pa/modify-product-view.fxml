@@ -96,7 +96,7 @@
             </TableView>
             <Button fx:id="addPartToProductButton" layoutX="619.0" layoutY="277.0" mnemonicParsing="false" onAction="#addAssociatedPart" text="↓ Add ↓" />
             <TextField fx:id="partsSearchBox" layoutX="669.0" layoutY="19.0" prefHeight="25.0" prefWidth="190.0" promptText="Search by Part ID or Name" />
-            <Button fx:id="removeAssociatedPartButton" layoutX="576.0" layoutY="530.0" mnemonicParsing="false" text="Remove Associated Part" />
+            <Button fx:id="removeAssociatedPartButton" layoutX="576.0" layoutY="530.0" mnemonicParsing="false" onAction="#removeAssociatedPart" text="Remove Associated Part" />
             <Button fx:id="modifyProductButton" layoutX="576.0" layoutY="561.0" mnemonicParsing="false" onAction="#modifyProduct" text="Save" />
             <Button fx:id="cancelButton" layoutX="668.0" layoutY="561.0" mnemonicParsing="false" onAction="#returnToMainPage" text="Cancel" />
          </children>

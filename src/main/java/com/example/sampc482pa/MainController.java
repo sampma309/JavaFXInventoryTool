@@ -17,7 +17,6 @@ import java.io.IOException;
 public class MainController {
     @FXML
     private TextField partsSearchBox, productsSearchBox;
-
     @FXML
     private TableView<Part> partsInventory;
     @FXML
@@ -107,9 +106,7 @@ public class MainController {
         try {
             Part partToDelete = partsInventory.getSelectionModel().getSelectedItem();
             if (Inventory.deletePart(partToDelete)) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText("Part deleted successfully.");
-                alert.showAndWait();
+                Utilities.displayAlert("Part deleted successfully");
             }
         }
         catch (NullPointerException e) {
@@ -121,9 +118,7 @@ public class MainController {
         try {
             Product productToDelete = productsInventory.getSelectionModel().getSelectedItem();
             if (Inventory.deleteProduct(productToDelete)) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText("Product deleted successfully.");
-                alert.showAndWait();
+                Utilities.displayAlert("Product deleted successfully.");
             }
         }
         catch (NullPointerException e) {
@@ -181,6 +176,11 @@ public class MainController {
 
     private void filterPartsByID(int searchID) {
         Part foundPart;
+
+        /*
+         ObservableList necessary for a single item because TableView.setItems requires it
+         as a parameter
+        */
         ObservableList<Part> foundParts = FXCollections.observableArrayList();
         try {
             foundPart = Inventory.lookupPart(searchID);
@@ -194,6 +194,11 @@ public class MainController {
 
     private void filterProductsByID(int searchID) {
         Product foundProduct;
+
+        /*
+         ObservableList necessary for a single item because TableView.setItems requires it
+         as a parameter
+        */
         ObservableList<Product> foundProducts = FXCollections.observableArrayList();
         try {
             foundProduct = Inventory.lookupProduct(searchID);

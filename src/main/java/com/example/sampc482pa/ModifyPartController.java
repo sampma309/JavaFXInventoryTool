@@ -27,7 +27,11 @@ public class ModifyPartController {
         partInvMaxText.setText(Integer.toString(partToModify.getMax()));
         partInvMinText.setText(Integer.toString(partToModify.getMin()));
 
-        // Set form version based on part type
+        /*
+         Set form version based on part type (InHouse/Outsourced) and make a shallow copy
+         of the Part to be modified. This allows updating of the copy and still being able to
+         exit out of the form without saving any changes.
+        */
         if (partToModify instanceof InHouse) {
             partSourceText.setText(Integer.toString(((InHouse) partToModify).getMachineId()));
             inHousePartButton.setSelected(true);
@@ -58,26 +62,31 @@ public class ModifyPartController {
     }
 
     public void updatePart(ActionEvent event) {
-
-        updatedPart.setName(partNameText.getText());
-        updatedPart.setStock(Integer.parseInt(partInvText.getText()));
-        updatedPart.setPrice(Double.parseDouble((partPriceOrCostText.getText())));
-        updatedPart.setMin(Integer.parseInt(partInvMinText.getText()));
-        updatedPart.setMax(Integer.parseInt(partInvMaxText.getText()));
-
-        if (inHousePartButton.isSelected()) {
-            ((InHouse)updatedPart).setMachineId(Integer.parseInt(partSourceText.getText()));
-        } else {
-            ((Outsourced) updatedPart).setCompanyName(partSourceText.getText());
-        }
-
         try {
+            updatedPart.setName(partNameText.getText());
+            updatedPart.setStock(Integer.parseInt(partInvText.getText()));
+            updatedPart.setPrice(Double.parseDouble((partPriceOrCostText.getText())));
+            updatedPart.setMin(Integer.parseInt(partInvMinText.getText()));
+            updatedPart.setMax(Integer.parseInt(partInvMaxText.getText()));
+
+            Utilities.validatePartInventory(updatedPart);
+
+            if (inHousePartButton.isSelected()) {
+                ((InHouse) updatedPart).setMachineId(Integer.parseInt(partSourceText.getText()));
+            } else {
+                ((Outsourced) updatedPart).setCompanyName(partSourceText.getText());
+            }
+
             Inventory.updatePart(partIndex, updatedPart);
+
+            returnToMainPage(event);
+        }
+        catch (NumberFormatException e) {
+            Exceptions.displayNumberFormattingErrorAlert(e);
         }
         catch (Exception e) {
             Exceptions.displayErrorAlert(e);
         }
-        returnToMainPage(event);
     }
 
     public void changePartSource(ActionEvent event) {
