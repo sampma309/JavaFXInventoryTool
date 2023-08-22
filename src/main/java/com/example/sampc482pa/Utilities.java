@@ -5,15 +5,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.util.Optional;
 
 public abstract class Utilities {
 
@@ -160,6 +158,14 @@ public abstract class Utilities {
         if (min < 0) {
             throw new Exception("Minimum stock must be at least 0");
         }
+    }
+
+    public static boolean confirmUserAction(String message) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Confirm " + message);
+        Optional<ButtonType> option = alert.showAndWait();
+
+        return option.isPresent() && option.get() == ButtonType.OK;
     }
 
     public static void main(String[] args){

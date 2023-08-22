@@ -108,11 +108,7 @@ public class MainController {
         try {
             Part partToDelete = partsInventory.getSelectionModel().getSelectedItem();
 
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Confirm part deletion");
-            Optional<ButtonType> option = alert.showAndWait();
-
-            if (option.isPresent() && option.get() == ButtonType.OK) {
+            if (Utilities.confirmUserAction("part deletion")) {
                 if (Inventory.deletePart(partToDelete)) {
                     Utilities.displayAlert("Part deleted successfully");
                 }
@@ -128,18 +124,13 @@ public class MainController {
         try {
             Product productToDelete = productsInventory.getSelectionModel().getSelectedItem();
 
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setHeaderText("Confirm product deletion");
-            Optional<ButtonType> option =  alert.showAndWait();
-
-            if (option.isPresent() && option.get() == ButtonType.OK) {
+            if (Utilities.confirmUserAction("product deletion")) {
                 if (Inventory.deleteProduct(productToDelete)) {
                     Utilities.displayAlert("Product deleted successfully.");
                 } else {
                     Utilities.displayAlert("Product not deleted because at least one part is still associated with it");
                 }
             }
-
         }
         catch (NullPointerException e) {
             Exceptions.displayMissingRowSelectionAlert();

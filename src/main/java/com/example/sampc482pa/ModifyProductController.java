@@ -100,11 +100,7 @@ public class ModifyProductController {
     public void removeAssociatedPart() {
         Part partToRemove = associatedPartsTable.getSelectionModel().getSelectedItem();
 
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setHeaderText("Confirm part disassociation");
-        Optional<ButtonType> option = alert.showAndWait();
-
-        if (option.isPresent() && option.get() == ButtonType.OK) {
+        if (Utilities.confirmUserAction("part disassociation")) {
             modifiedProduct.deleteAssociatedPart(partToRemove);
             loadAssociatedPartsTable(modifiedProduct.getAllAssociatedParts());
         }
