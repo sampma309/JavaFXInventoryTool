@@ -102,7 +102,6 @@ public class AddProductController {
             newProductInvMin = Integer.parseInt(productStockMinText.getText());
 
             Utilities.validateProductInventory(newProductStock, newProductInvMin, newProductInvMax);
-            Utilities.atLeastOneAssociatedPart(associatedParts);
 
             Product newProduct = new Product(
                     IDCounters.getNextAvailableProductID(),

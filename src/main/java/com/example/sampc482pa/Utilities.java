@@ -162,12 +162,6 @@ public abstract class Utilities {
         }
     }
 
-    public static void atLeastOneAssociatedPart(ObservableList<Part> parts) throws Exception {
-        if (parts.isEmpty()) {
-            throw new Exception("You must associate at least one part with this product");
-        }
-    }
-
     public static void main(String[] args){
 
     }

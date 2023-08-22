@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cc038ba-19a4-4432-9c99-00494cfcc30b" name="Changes" comment="Adds part search functionality to product creation/modification windows">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/MainController.java" afterDir="false" />
+    <list default="true" id="9cc038ba-19a4-4432-9c99-00494cfcc30b" name="Changes" comment="Corrected part/product deletion functionality and requires user confirmation">
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddProductController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,7 +223,15 @@
       <option name="project" value="LOCAL" />
       <updated>1692705233399</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Corrected part/product deletion functionality and requires user confirmation">
+      <option name="closed" value="true" />
+      <created>1692705683258</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1692705683258</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -244,7 +252,8 @@
     <MESSAGE value="Structured AddPartController to be more similar to AddProductController" />
     <MESSAGE value="Adds error handling" />
     <MESSAGE value="Adds part search functionality to product creation/modification windows" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adds part search functionality to product creation/modification windows" />
+    <MESSAGE value="Corrected part/product deletion functionality and requires user confirmation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected part/product deletion functionality and requires user confirmation" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
