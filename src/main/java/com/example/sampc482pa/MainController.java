@@ -8,11 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class MainController {
     @FXML
@@ -108,11 +110,14 @@ public class MainController {
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("Confirm part deletion");
-            alert.showAndWait();
+            Optional<ButtonType> option = alert.showAndWait();
 
-            if (Inventory.deletePart(partToDelete)) {
-                Utilities.displayAlert("Part deleted successfully");
+            if (option.isPresent() && option.get() == ButtonType.OK) {
+                if (Inventory.deletePart(partToDelete)) {
+                    Utilities.displayAlert("Part deleted successfully");
+                }
             }
+
         }
         catch (NullPointerException e) {
             Exceptions.displayMissingRowSelectionAlert();
@@ -125,13 +130,16 @@ public class MainController {
 
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setHeaderText("Confirm product deletion");
-            alert.showAndWait();
+            Optional<ButtonType> option =  alert.showAndWait();
 
-            if (Inventory.deleteProduct(productToDelete)) {
-                Utilities.displayAlert("Product deleted successfully.");
-            } else {
-                Utilities.displayAlert("Product not deleted because at least one part is still associated with it");
+            if (option.isPresent() && option.get() == ButtonType.OK) {
+                if (Inventory.deleteProduct(productToDelete)) {
+                    Utilities.displayAlert("Product deleted successfully.");
+                } else {
+                    Utilities.displayAlert("Product not deleted because at least one part is still associated with it");
+                }
             }
+
         }
         catch (NullPointerException e) {
             Exceptions.displayMissingRowSelectionAlert();

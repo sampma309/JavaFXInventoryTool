@@ -4,8 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+
+import java.util.Optional;
 
 public class ModifyProductController {
 
@@ -95,8 +99,15 @@ public class ModifyProductController {
 
     public void removeAssociatedPart() {
         Part partToRemove = associatedPartsTable.getSelectionModel().getSelectedItem();
-        modifiedProduct.deleteAssociatedPart(partToRemove);
-        loadAssociatedPartsTable(modifiedProduct.getAllAssociatedParts());
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText("Confirm part disassociation");
+        Optional<ButtonType> option = alert.showAndWait();
+
+        if (option.isPresent() && option.get() == ButtonType.OK) {
+            modifiedProduct.deleteAssociatedPart(partToRemove);
+            loadAssociatedPartsTable(modifiedProduct.getAllAssociatedParts());
+        }
     }
 
     public void modifyProduct(ActionEvent event) {
