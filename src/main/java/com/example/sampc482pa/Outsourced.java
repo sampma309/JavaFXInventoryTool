@@ -2,18 +2,11 @@ package com.example.sampc482pa;
 
 
 public class Outsourced extends Part {
-    private static int id = 200;
     private String companyName;
 
     public Outsourced(int id, String name, double price, int stock, int min, int max, String companyName) {
-        super(getNextID(), name, price, stock, min, max);
+        super(id, name, price, stock, min, max);
         this.companyName = companyName;
-    }
-
-    private static int getNextID() {
-        int nextAvailableID = id;
-        id++;
-        return nextAvailableID;
     }
 
     public void setCompanyName(String companyName) {
@@ -25,7 +18,7 @@ public class Outsourced extends Part {
     }
 
     public static void main(String[] args) {
-        Outsourced p = new Outsourced(-1, "wheel", 3.50, 13, 0, 100, "Honda");
+        Outsourced p = new Outsourced(IDCounters.getNextAvailablePartID(), "wheel", 3.50, 13, 0, 100, "Honda");
 
         System.out.println(p.getId());
         System.out.println(p.getName());

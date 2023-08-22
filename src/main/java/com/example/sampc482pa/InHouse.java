@@ -2,18 +2,11 @@ package com.example.sampc482pa;
 
 
 public class InHouse extends Part {
-    private static int id = 100;
     private int machineId;
 
     public InHouse(int id, String name, double price, int stock, int min, int max, int machineId) {
-        super(getNextID(), name, price, stock, min, max);
+        super(id, name, price, stock, min, max);
         this.machineId = machineId;
-    }
-
-    private static int getNextID() {
-        int nextAvailableID = id;
-        id++;
-        return nextAvailableID;
     }
 
     public void setMachineId(int machineId) {
@@ -26,7 +19,7 @@ public class InHouse extends Part {
 
 
     public static void main(String[] args) {
-        InHouse p = new InHouse(-1, "wheel", 4.00, 1, 0, 5, 42);
+        InHouse p = new InHouse(IDCounters.getNextAvailablePartID(), "wheel", 4.00, 1, 0, 5, 42);
 
         System.out.println(p.getId());
         System.out.println(p.getName());

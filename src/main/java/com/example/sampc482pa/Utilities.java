@@ -81,7 +81,7 @@ public abstract class Utilities {
             stage.show();
         }
         catch (IOException e) {
-            e.printStackTrace();
+            Exceptions.displayIOExceptionAlert(e);
         }
     }
 

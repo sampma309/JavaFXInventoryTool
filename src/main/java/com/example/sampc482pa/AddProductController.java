@@ -4,31 +4,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.text.NumberFormat;
 
 
 public class AddProductController {
-
-    @FXML
-    private Button cancelButton, createProductButton;
     @FXML
     private TableView<Part> availablePartsTable;
-
     @FXML
     private TableView<Part> associatedPartsTable;
     @FXML
     private TextField productNameText, productStockText, productPriceOrCostText, productStockMaxText, productStockMinText;
-
-
-    Stage stage;
-    private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
+    final private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
 
     public void initialize() {
         availablePartsTable.setItems(Inventory.getAllParts());
@@ -82,7 +72,7 @@ public class AddProductController {
             return false;
         }
 
-        Product newProduct = new Product(-1, newProductName, newProductPriceOrCost, newProductStock, newProductInvMin, newProductInvMax);
+        Product newProduct = new Product(IDCounters.getNextAvailableProductID(), newProductName, newProductPriceOrCost, newProductStock, newProductInvMin, newProductInvMax);
 
         for (Part p : associatedParts) {
             newProduct.addAssociatedPart(p);

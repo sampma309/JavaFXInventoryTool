@@ -13,19 +13,19 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
 
-        InHouse wheel = new InHouse(-1, "Wheel", 72.00, 152, 0, 500, 1);
-        Outsourced engine = new Outsourced(-1, "Engine", 2300.00, 7, 0, 25, "Cummins");
-        InHouse windshield = new InHouse(-1, "Windshield", 540.00, 12, 0, 50, 2);
-        Outsourced handles = new Outsourced(-1, "Handlebars", 30.00, 23, 0, 90, "Huffy");
-        InHouse paint = new InHouse(-1, "Paint (green)", 15.00, 50, 0, 420, 3);
+        InHouse wheel = new InHouse(IDCounters.getNextAvailablePartID(), "Wheel", 72.00, 152, 0, 500, 1);
+        Outsourced engine = new Outsourced(IDCounters.getNextAvailablePartID(), "Engine", 2300.00, 7, 0, 25, "Cummins");
+        InHouse windshield = new InHouse(IDCounters.getNextAvailablePartID(), "Windshield", 540.00, 12, 0, 50, 2);
+        Outsourced handles = new Outsourced(IDCounters.getNextAvailablePartID(), "Handlebars", 30.00, 23, 0, 90, "Huffy");
+        InHouse paint = new InHouse(IDCounters.getNextAvailablePartID(), "Paint (green)", 15.00, 50, 0, 420, 3);
         Inventory.addPart(wheel);
         Inventory.addPart(engine);
         Inventory.addPart(windshield);
         Inventory.addPart(handles);
         Inventory.addPart(paint);
         ObservableList<Part> parts = Inventory.getAllParts();
-        Product car = new Product(-1, "Car", 4000.00, 2, 1, 40);
-        Product bike = new Product(-1, "Bike", 400.00, 13, 0, 35);
+        Product car = new Product(IDCounters.getNextAvailableProductID(), "Car", 4000.00, 2, 1, 40);
+        Product bike = new Product(IDCounters.getNextAvailableProductID(), "Bike", 400.00, 13, 0, 35);
         car.addAssociatedPart(wheel);
         car.addAssociatedPart(engine);
         car.addAssociatedPart(paint);
@@ -44,10 +44,7 @@ public class Main extends Application {
             primaryStage.show();
         }
         catch (IOException e) {
-            e.printStackTrace();
-        }
-        catch (Throwable thrwObj) {
-            thrwObj.printStackTrace();
+            Exceptions.displayIOExceptionAlert(e);
         }
     }
 

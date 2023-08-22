@@ -40,11 +40,11 @@ public class AddPartController {
             /* passing -1 as the ID is purely so the constructor matches the one given in the UML
             diagram. In a real project, I wouldn't do this and instead use an AtomicInteger
             to keep track of the next available part/product ID number */
-            InHouse newPart = new InHouse(-1, partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
+            InHouse newPart = new InHouse(IDCounters.getNextAvailablePartID(), partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
             Inventory.addPart(newPart);
         } else if (outsourcedPartButton.isSelected()) {
             String partSource = partSourceText.getText();
-            Outsourced newPart = new Outsourced(-1, partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
+            Outsourced newPart = new Outsourced(IDCounters.getNextAvailablePartID(), partName, partPriceOrCost, partStock, partInvMin, partInvMax, partSource);
             Inventory.addPart(newPart);
         }
         returnToMainPage(event);
