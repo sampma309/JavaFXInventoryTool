@@ -1,5 +1,6 @@
 package com.example.sampc482pa;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,7 +10,7 @@ import javafx.scene.control.TextField;
 public class ModifyProductController {
 
     @FXML
-    private TextField productIDText, productNameText, productInvText, productPriceOrCostText, productInvMaxText, productInvMinText;
+    private TextField productIDText, productNameText, productInvText, productPriceOrCostText, productInvMaxText, productInvMinText, partsSearchBox;
     @FXML
     private TableView<Part> availablePartsTable;
     @FXML
@@ -42,6 +43,48 @@ public class ModifyProductController {
     private void loadAssociatedPartsTable(ObservableList<Part> associatedParts) {
         associatedPartsTable.setItems(associatedParts);
         Utilities.formatTable(associatedPartsTable);
+    }
+
+    public void filterParts() {
+        String searchText = partsSearchBox.getText();
+
+        try {
+            int searchID = Integer.parseInt(searchText);
+            filterPartsByID(searchID);
+        }
+        catch (NumberFormatException e) {
+            filterPartsByName(searchText);
+        }
+    }
+
+    private void filterPartsByName(String searchName) {
+
+        ObservableList<Part> foundParts;
+        try {
+            foundParts = Inventory.lookupPart(searchName);
+            availablePartsTable.setItems(foundParts);
+        }
+        catch (Exception e) {
+            Exceptions.displayInformationAlert(e);
+        }
+    }
+
+    private void filterPartsByID(int searchID) {
+        Part foundPart;
+
+        /*
+         ObservableList necessary for a single item because TableView.setItems requires it
+         as a parameter
+        */
+        ObservableList<Part> foundParts = FXCollections.observableArrayList();
+        try {
+            foundPart = Inventory.lookupPart(searchID);
+            foundParts.add(foundPart);
+            availablePartsTable.setItems(foundParts);
+        }
+        catch (Exception e) {
+            Exceptions.displayInformationAlert(e);
+        }
     }
 
     public void addAssociatedPart() {

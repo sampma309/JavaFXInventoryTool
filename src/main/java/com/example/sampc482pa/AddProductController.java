@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
@@ -15,7 +14,7 @@ public class AddProductController {
     @FXML
     private TableView<Part> associatedPartsTable;
     @FXML
-    private TextField productNameText, productStockText, productPriceOrCostText, productStockMaxText, productStockMinText;
+    private TextField productNameText, productStockText, productPriceOrCostText, productStockMaxText, productStockMinText, partsSearchBox;
     final private ObservableList<Part> associatedParts = FXCollections.observableArrayList();
 
     public void initialize() {
@@ -24,6 +23,49 @@ public class AddProductController {
 
         associatedPartsTable.setItems(associatedParts);
         Utilities.formatTable(associatedPartsTable);
+    }
+
+
+    public void filterParts() {
+        String searchText = partsSearchBox.getText();
+
+        try {
+            int searchID = Integer.parseInt(searchText);
+            filterPartsByID(searchID);
+        }
+        catch (NumberFormatException e) {
+            filterPartsByName(searchText);
+        }
+    }
+
+    private void filterPartsByName(String searchName) {
+
+        ObservableList<Part> foundParts;
+        try {
+            foundParts = Inventory.lookupPart(searchName);
+            availablePartsTable.setItems(foundParts);
+        }
+        catch (Exception e) {
+            Exceptions.displayInformationAlert(e);
+        }
+    }
+
+    private void filterPartsByID(int searchID) {
+        Part foundPart;
+
+        /*
+         ObservableList necessary for a single item because TableView.setItems requires it
+         as a parameter
+        */
+        ObservableList<Part> foundParts = FXCollections.observableArrayList();
+        try {
+            foundPart = Inventory.lookupPart(searchID);
+            foundParts.add(foundPart);
+            availablePartsTable.setItems(foundParts);
+        }
+        catch (Exception e) {
+            Exceptions.displayInformationAlert(e);
+        }
     }
 
 
