@@ -87,7 +87,11 @@ public class Inventory {
     }
 
     public static boolean deleteProduct(Product selectedProduct) {
-        return allProducts.remove(selectedProduct);
+        if (!selectedProduct.getAllAssociatedParts().isEmpty()) {
+            return false;
+        } else {
+            return allProducts.remove(selectedProduct);
+        }
     }
 
     public static ObservableList<Part> getAllParts() {

@@ -105,6 +105,11 @@ public class MainController {
     public void deletePart() {
         try {
             Part partToDelete = partsInventory.getSelectionModel().getSelectedItem();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Confirm part deletion");
+            alert.showAndWait();
+
             if (Inventory.deletePart(partToDelete)) {
                 Utilities.displayAlert("Part deleted successfully");
             }
@@ -117,8 +122,15 @@ public class MainController {
     public void deleteProduct() {
         try {
             Product productToDelete = productsInventory.getSelectionModel().getSelectedItem();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setHeaderText("Confirm product deletion");
+            alert.showAndWait();
+
             if (Inventory.deleteProduct(productToDelete)) {
                 Utilities.displayAlert("Product deleted successfully.");
+            } else {
+                Utilities.displayAlert("Product not deleted because at least one part is still associated with it");
             }
         }
         catch (NullPointerException e) {
