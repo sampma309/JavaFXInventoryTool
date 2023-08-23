@@ -4,23 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9cc038ba-19a4-4432-9c99-00494cfcc30b" name="Changes" comment="Pulled confirmation dialogs out to a utility to simplify code inside of controllers">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="9cc038ba-19a4-4432-9c99-00494cfcc30b" name="Changes" comment="Adds Javadoc comments">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddPartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/AddProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Exceptions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Exceptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/IDCounters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/IDCounters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/InHouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/InHouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Inventory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Inventory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/ModifyPartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/ModifyPartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/ModifyProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/ModifyProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Outsourced.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Outsourced.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Part.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Part.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Utilities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/sampc482pa/Utilities.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +24,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
 }</component>
@@ -52,7 +41,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Programming/WGU/Software 1/SampC482PA/src/main/resources/com/example/sampc482pa&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Programming/WGU/Software 1/Performance Assessment&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
