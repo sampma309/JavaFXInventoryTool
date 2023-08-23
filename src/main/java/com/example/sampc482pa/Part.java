@@ -2,9 +2,6 @@ package com.example.sampc482pa;
 
 /**
  * Supplied class Part.java
- */
-
-/**
  *
  * @author Michael Samp
  */

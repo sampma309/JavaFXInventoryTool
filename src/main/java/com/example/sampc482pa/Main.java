@@ -1,7 +1,6 @@
 package com.example.sampc482pa;
 
 import javafx.application.Application;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -9,7 +8,23 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Driver code for application
+ *
+ * <p>FUTURE ENHANCEMENT: One future enhancement would be to add the ability to search for all products
+ * associated with a given part and vice versa. This functionality could use the same search box
+ * currently being used to filter parts/products, and an additional dropdown menu could be added to
+ * specify which search method should be used.</p>
+ *
+ * @author Michael Samp
+ */
 public class Main extends Application {
+
+    /**
+     * Generates sample data and loads the main page of the application.
+     *
+     * @param primaryStage a default JavaFX Stage that will serve as the main window for the application
+     */
     @Override
     public void start(Stage primaryStage) {
 
@@ -23,12 +38,12 @@ public class Main extends Application {
         Inventory.addPart(windshield);
         Inventory.addPart(handles);
         Inventory.addPart(paint);
-        ObservableList<Part> parts = Inventory.getAllParts();
         Product car = new Product(IDCounters.getNextAvailableProductID(), "Car", 4000.00, 2, 1, 40);
         Product bike = new Product(IDCounters.getNextAvailableProductID(), "Bike", 400.00, 13, 0, 35);
         car.addAssociatedPart(wheel);
         car.addAssociatedPart(engine);
         car.addAssociatedPart(paint);
+        car.addAssociatedPart(windshield);
         bike.addAssociatedPart(wheel);
         bike.addAssociatedPart(handles);
         bike.addAssociatedPart(paint);
@@ -48,6 +63,9 @@ public class Main extends Application {
         }
     }
 
+    /**
+     * Starts application
+     */
     public static void main(String[] args) {
         launch(args);
     }

@@ -4,13 +4,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-import java.util.Optional;
 
+/**
+ * Controller for the Modify Product form
+ *
+ * @author Michael Samp
+ */
 public class ModifyProductController {
 
     @FXML
@@ -24,6 +26,14 @@ public class ModifyProductController {
     private int productIndex;
 
 
+    /**
+     * Initializes the form fields and the associated/available parts tables based on the
+     * Product passed in. Creates a shallow copy of the Product which will replace the original
+     * Product when the form is saved.
+     *
+     * @param productToModify The Product to modify
+     * @param productIdx The index of the Product in Inventory's allProducts list
+     */
     public void initForm(Product productToModify, int productIdx) {
         productIDText.setText(Integer.toString(productToModify.getId()));
         productNameText.setText(productToModify.getName());
@@ -32,23 +42,19 @@ public class ModifyProductController {
         productInvMaxText.setText(Integer.toString(productToModify.getMax()));
         productInvMinText.setText(Integer.toString(productToModify.getMin()));
 
-        loadAvailablePartsTable(Inventory.getAllParts());
-        loadAssociatedPartsTable(productToModify.getAllAssociatedParts());
+        availablePartsTable.setItems(Inventory.getAllParts());
+        Utilities.formatTable(availablePartsTable);
+        associatedPartsTable.setItems(productToModify.getAllAssociatedParts());
+        Utilities.formatTable(associatedPartsTable);
 
         modifiedProduct = Utilities.copyProduct(productToModify);
         productIndex = productIdx;
     }
 
-    private void loadAvailablePartsTable(ObservableList<Part> availableParts) {
-        availablePartsTable.setItems(availableParts);
-        Utilities.formatTable(availablePartsTable);
-    }
-
-    private void loadAssociatedPartsTable(ObservableList<Part> associatedParts) {
-        associatedPartsTable.setItems(associatedParts);
-        Utilities.formatTable(associatedPartsTable);
-    }
-
+     /**
+     * Takes the text from the search box and determines whether to search by ID number or by part name
+     * based on whether the text can be parsed as an integer.
+     */
     public void filterParts() {
         String searchText = partsSearchBox.getText();
 
@@ -61,6 +67,12 @@ public class ModifyProductController {
         }
     }
 
+    /**
+     * Filters available parts by name, updating the table to include only parts which contain
+     * the given text.
+     *
+     * @param searchName Partial or complete name of the part(s) to be filtered (case-sensitive)
+     */
     private void filterPartsByName(String searchName) {
 
         ObservableList<Part> foundParts;
@@ -73,6 +85,11 @@ public class ModifyProductController {
         }
     }
 
+    /**
+     * Filters available parts by ID, updating the table to include only part with a matching ID
+     *
+     * @param searchID Part ID number
+     */
     private void filterPartsByID(int searchID) {
         Part foundPart;
 
@@ -91,21 +108,32 @@ public class ModifyProductController {
         }
     }
 
+    /**
+     * Adds selected part to the associated parts table.
+     */
     public void addAssociatedPart() {
         Part associatedPart = availablePartsTable.getSelectionModel().getSelectedItem();
         modifiedProduct.addAssociatedPart(associatedPart);
-        loadAssociatedPartsTable(modifiedProduct.getAllAssociatedParts());
+        associatedPartsTable.setItems(modifiedProduct.getAllAssociatedParts());
     }
 
+    /**
+     * Removes the selected part from the associated parts table.
+     */
     public void removeAssociatedPart() {
         Part partToRemove = associatedPartsTable.getSelectionModel().getSelectedItem();
 
         if (Utilities.confirmUserAction("part disassociation")) {
             modifiedProduct.deleteAssociatedPart(partToRemove);
-            loadAssociatedPartsTable(modifiedProduct.getAllAssociatedParts());
+            associatedPartsTable.setItems(modifiedProduct.getAllAssociatedParts());
         }
     }
 
+    /**
+     * Verifies the data in the form and tables are valid, updates the Product in Inventory.
+     *
+     * @param event The event that called this method
+     */
     public void modifyProduct(ActionEvent event) {
         try {
             modifiedProduct.setName(productNameText.getText());
@@ -127,6 +155,11 @@ public class ModifyProductController {
         }
     }
 
+    /**
+     * Changes the scene back to the main page.
+     *
+     * @param event The event that called this method.
+     */
     public void returnToMainPage(ActionEvent event) {
         Utilities.navigateToNewPage(event, "main-view.fxml");
     }

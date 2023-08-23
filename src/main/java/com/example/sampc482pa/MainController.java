@@ -7,15 +7,17 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Optional;
 
+/**
+ * Controller for the main page of the application.
+ *
+ * @author Michael Samp
+ */
 public class MainController {
     @FXML
     private TextField partsSearchBox, productsSearchBox;
@@ -26,6 +28,9 @@ public class MainController {
 
     private Stage stage;
 
+    /**
+     * Built-in JavaFX method that runs when the page is first loaded
+     */
     @FXML
     public void initialize() {
         partsInventory.setItems(Inventory.getAllParts());
@@ -35,25 +40,44 @@ public class MainController {
         Utilities.formatTable(productsInventory);
     }
 
+    /**
+     * Exits the application.
+     *
+     * @param event The event that triggered the method
+     */
     public void exit(ActionEvent event) {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Loads the Add Part Form and changes the scene.
+     *
+     * @param event The event that triggered the method
+     */
     public void loadAddPartForm(ActionEvent event) {
         Utilities.navigateToNewPage(event, "add-part-view.fxml");
     }
 
+    /**
+     * Loads the Add Product Form and changes the scene.
+     *
+     * @param event The event that triggered the method
+     */
     public void loadAddProductForm(ActionEvent event) {
         Utilities.navigateToNewPage(event, "add-product-view.fxml");
     }
 
     /**
-     * RUNTIME ERROR: I got a NullPointerException error when the "modify" button was pressed without a
+     * <p>RUNTIME ERROR: I got a NullPointerException error when the "modify" button was pressed without a
      * row selected. I am now catching that error and displaying an alert that a row must be selected.
-     * Opens the modify part form, and initializes it with the information from the selected row.
+     * Opens the modify part form, and initializes it with the information from the selected row. The
+     * actual error would occur in ModifyPartController.initForm because the partToModify parameter was
+     * null, but the issue originated from this method.</p>
      *
-     * @param event The event that triggers this method
+     * Loads the Modify Part Form, passes the part data to the form, and changes the scene.
+     *
+     * @param event The event that triggered this method
      */
     public void loadModifyPartForm(ActionEvent event) {
 
@@ -77,9 +101,14 @@ public class MainController {
         catch (NullPointerException e) {
             Exceptions.displayMissingRowSelectionAlert();
         }
-
     }
 
+    /**
+     *
+     * Loads the Modify Product Form, passes the product data to the form, and changes the scene.
+     *
+     * @param event The event that triggered this method
+     */
     public void loadModifyProductForm(ActionEvent event) {
 
         try {
@@ -104,6 +133,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Deletes the selected row from the table of available parts.
+     */
     public void deletePart() {
         try {
             Part partToDelete = partsInventory.getSelectionModel().getSelectedItem();
@@ -120,6 +152,9 @@ public class MainController {
         }
     }
 
+    /**
+     * Deletes the selected row from the table of existing products.
+     */
     public void deleteProduct() {
         try {
             Product productToDelete = productsInventory.getSelectionModel().getSelectedItem();
@@ -137,6 +172,10 @@ public class MainController {
         }
     }
 
+    /**
+     * Takes the text from the search box and determines whether to search by ID number or by part name
+     * based on whether the text can be parsed as an integer.
+     */
     public void filterParts() {
         String searchText = partsSearchBox.getText();
 
@@ -149,6 +188,10 @@ public class MainController {
         }
     }
 
+    /**
+     * Takes the text from the search box and determines whether to search by ID number or by product name
+     * based on whether the text can be parsed as an integer.
+     */
     public void filterProducts() {
         String searchText = productsSearchBox.getText();
 
@@ -161,6 +204,12 @@ public class MainController {
         }
     }
 
+    /**
+     * Filters available parts by name, updating the table to include only parts which contain
+     * the given text.
+     *
+     * @param searchName Partial or complete name of the part(s) to be filtered (case-sensitive)
+     */
     private void filterPartsByName(String searchName) {
 
         ObservableList<Part> foundParts;
@@ -173,6 +222,13 @@ public class MainController {
         }
     }
 
+    /**
+     *
+     * Filters available products by name, updating the table to include only products which contain
+     * the given text.
+     *
+     * @param searchName Partial or complete name of the product(s) to be filtered (case-sensitive)
+     */
     private void filterProductsByName(String searchName) {
 
         ObservableList<Product> foundProducts;
@@ -185,6 +241,11 @@ public class MainController {
         }
     }
 
+    /**
+     * Filters available parts by ID, updating the table to include only part with a matching ID
+     *
+     * @param searchID Part ID number
+     */
     private void filterPartsByID(int searchID) {
         Part foundPart;
 
@@ -203,6 +264,12 @@ public class MainController {
         }
     }
 
+    /**
+     *
+     * Filters available products by ID, updating the table to include only product with a matching ID
+     *
+     * @param searchID Product ID number
+     */
     private void filterProductsByID(int searchID) {
         Product foundProduct;
 

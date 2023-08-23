@@ -13,33 +13,21 @@ import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.Optional;
 
+
+/**
+ * A Class containing several utility functions used throughout the application
+ *
+ * @author Michael Samp
+ */
 public abstract class Utilities {
 
-    public static <T> void formatTable(TableColumn<T, Integer> idCol,
-                                TableColumn<T, String> nameCol,
-                                TableColumn<T, Integer> stockCol,
-                                TableColumn<T, Number> priceCol) {
-
-
-        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        stockCol.setCellValueFactory(new PropertyValueFactory<>("stock"));
-        priceCol.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-        priceCol.setCellFactory(cell -> new TableCell<>() {
-            @Override
-            protected void updateItem(Number price, boolean empty) {
-                super.updateItem(price, empty);
-                NumberFormat formatter = NumberFormat.getCurrencyInstance();
-                if (empty) {
-                    setText(null);
-                } else {
-                    setText(formatter.format(price));
-                }
-            }
-        });
-    }
-
+    /**
+     * Formats any table in the application since they all have nearly identical column
+     * data types.
+     *
+     * @param table The table to format
+     * @param <T> A generic class representing Product or Part based on the table
+     */
     public static <T> void formatTable(TableView<T> table) {
         ObservableList<TableColumn<T, ?>> tableColumns = table.getColumns();
 
@@ -68,6 +56,12 @@ public abstract class Utilities {
 
     }
 
+    /**
+     * Navigates to a new page within the application specified by the given FXML file.
+     *
+     * @param event The event that called this method
+     * @param fxmlFile The FXML file of the new page
+     */
     public static void navigateToNewPage(ActionEvent event, String fxmlFile) {
 
         Stage stage;
@@ -84,6 +78,12 @@ public abstract class Utilities {
         }
     }
 
+    /**
+     * Creates a shallow copy of a given product, including its associated parts
+     *
+     * @param productToCopy A Product to copy
+     * @return A shallow copy of the Product
+     */
     public static Product copyProduct(Product productToCopy) {
 
         Product newProduct = new Product(
@@ -102,12 +102,24 @@ public abstract class Utilities {
         return newProduct;
     }
 
+    /**
+     * Displays a general information alert with a provided message
+     *
+     * @param message The displayed message
+     */
     public static void displayAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setContentText(message);
         alert.showAndWait();
     }
 
+    /**
+     * Verifies that a given part has a minimum stock greater than zero and a current stock
+     * greater than the minimum stock, but less than the maximum stock.
+     *
+     * @param part The part
+     * @throws Exception Thrown if the part violates either condition
+     */
     public static void validatePartInventory(Part part) throws Exception {
         if (part.getStock() < part.getMin() || part.getStock() > part.getMax()) {
             throw new Exception("Part stock must be between the inventory bounds");
@@ -118,6 +130,16 @@ public abstract class Utilities {
         }
     }
 
+    /**
+     * Verifies that the given form entries are consistent with a valid part inventory. Meaning that
+     * the maximum stock is greater than the minimum stock, the current stock is between the minimum
+     * and maximum stock, and the minimum stock is at least zero.
+     *
+     * @param stock The current stock
+     * @param min The minimum stock
+     * @param max The maximum stock
+     * @throws Exception Thrown if any of the three conditions are violated
+     */
     public static void validatePartInventory(int stock, int min, int max) throws Exception {
         if (max < min) {
             throw new Exception("Maximum stock must be greater than minimum stock");
@@ -132,6 +154,13 @@ public abstract class Utilities {
         }
     }
 
+    /**
+     * Verifies that a given product has a minimum stock greater than zero and a current stock
+     * greater than the minimum stock, but less than the maximum stock.
+     *
+     * @param product The product
+     * @throws Exception Thrown if the product violates either condition
+     */
     public static void validateProductInventory(Product product) throws Exception {
         if (product.getStock() < product.getMin() || product.getStock() > product.getMax()) {
             throw new Exception("Part stock must be between the inventory bounds");
@@ -146,6 +175,16 @@ public abstract class Utilities {
         }
     }
 
+    /**
+     * Verifies that the given form entries are consistent with a valid product inventory. Meaning that
+     * the maximum stock is greater than the minimum stock, the current stock is between the minimum
+     * and maximum stock, and the minimum stock is at least zero.
+     *
+     * @param stock The current stock
+     * @param min The minimum stock
+     * @param max The maximum stock
+     * @throws Exception Thrown if any of the three conditions are violated
+     */
     public static void validateProductInventory(int stock, int min, int max) throws Exception {
         if (max < min) {
             throw new Exception("Maximum stock must be greater than minimum stock");
@@ -160,6 +199,12 @@ public abstract class Utilities {
         }
     }
 
+    /**
+     * Displays a confirmation box for the user to confirm their previous action
+     *
+     * @param message String specifying the previous action
+     * @return True if the user confirms, otherwise False
+     */
     public static boolean confirmUserAction(String message) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setHeaderText("Confirm " + message);
@@ -168,7 +213,4 @@ public abstract class Utilities {
         return option.isPresent() && option.get() == ButtonType.OK;
     }
 
-    public static void main(String[] args){
-
-    }
 }

@@ -6,6 +6,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
+/**
+ * Controller for Add Part form.
+ *
+ * @author Michael Samp
+ */
 public class AddPartController {
     @FXML
     Label partIDLabel, partNameLabel, partInvLabel, partPriceOrCostLabel,
@@ -17,6 +22,11 @@ public class AddPartController {
     private RadioButton inHousePartButton, outsourcedPartButton;
 
 
+    /**
+     * Toggle the form between its OutSourced and InHouse versions
+     *
+     * @param event The event that called this method
+     */
     public void changePartSource(ActionEvent event) {
         RadioButton eventSrc = (RadioButton) event.getSource();
         if (eventSrc == inHousePartButton) {
@@ -26,9 +36,14 @@ public class AddPartController {
         }
     }
 
+    /**
+     * Gets the data from the form, checks that the data is valid, creates a new part based on the given
+     * form data, and adds the part to the inventory.
+     *
+     * @param event The event that called this method
+     */
     public void createPart(ActionEvent event) {
         try {
-
             String partName = partNameText.getText();
             int partStock = Integer.parseInt(partInvText.getText());
             double partPriceOrCost = Double.parseDouble(partPriceOrCostText.getText());
@@ -58,6 +73,11 @@ public class AddPartController {
         }
     }
 
+    /**
+     * Changes the scene back to the main page.
+     *
+     * @param event The event that called this method.
+     */
     public void returnToMainPage(ActionEvent event) {
         Utilities.navigateToNewPage(event, "main-view.fxml");
     }

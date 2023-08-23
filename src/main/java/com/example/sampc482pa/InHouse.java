@@ -1,6 +1,11 @@
 package com.example.sampc482pa;
 
 
+/**
+ * Subclass of Part.java for parts created in-house.
+ *
+ * @author Michael Samp
+ */
 public class InHouse extends Part {
     private int machineId;
 
@@ -9,24 +14,22 @@ public class InHouse extends Part {
         this.machineId = machineId;
     }
 
+    /**
+     * Sets the machine ID
+     *
+     * @param machineId The machine ID
+     */
     public void setMachineId(int machineId) {
         this.machineId = machineId;
     }
 
+    /**
+     * Gets the machine ID
+     *
+     * @return The machine ID
+     */
     public int getMachineId() {
         return this.machineId;
     }
 
-
-    public static void main(String[] args) {
-        InHouse p = new InHouse(IDCounters.getNextAvailablePartID(), "wheel", 4.00, 1, 0, 5, 42);
-
-        System.out.println(p.getId());
-        System.out.println(p.getName());
-        System.out.println(p.getPrice());
-        System.out.println(p.getStock());
-        System.out.println(p.getMin());
-        System.out.println(p.getMax());
-        System.out.println(p.getMachineId());
-    }
 }

@@ -1,6 +1,11 @@
 package com.example.sampc482pa;
 
 
+/**
+ * Subclass of Part.java for parts purchased from an outside source.
+ *
+ * @author Michael Samp
+ */
 public class Outsourced extends Part {
     private String companyName;
 
@@ -9,23 +14,21 @@ public class Outsourced extends Part {
         this.companyName = companyName;
     }
 
+    /**
+     * Sets the company name of the supplier of this part
+     *
+     * @param companyName The company name
+     */
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
+    /**
+     * Gets the company name of the supplier of this part
+     *
+     * @return The company name
+     */
     public String getCompanyName() {
         return this.companyName;
-    }
-
-    public static void main(String[] args) {
-        Outsourced p = new Outsourced(IDCounters.getNextAvailablePartID(), "wheel", 3.50, 13, 0, 100, "Honda");
-
-        System.out.println(p.getId());
-        System.out.println(p.getName());
-        System.out.println(p.getPrice());
-        System.out.println(p.getStock());
-        System.out.println(p.getMin());
-        System.out.println(p.getMax());
-        System.out.println(p.getCompanyName());
     }
 }

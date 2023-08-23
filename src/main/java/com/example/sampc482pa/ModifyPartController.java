@@ -6,6 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 
+/**
+ * Controller for Modify Part form.
+ */
 public class ModifyPartController {
     @FXML
     private Label partSourceLabel;
@@ -19,6 +22,14 @@ public class ModifyPartController {
     private int partIndex;
 
 
+    /**
+     * Initializes the form fields and sets the form version based on the data in partToModify. Creates a
+     * shallow copy of the part which will replace the original part when the form is saved.
+     *
+     * @param partToModify The part to modify
+     * @param partIdx The index of the part in Inventory's allParts list
+     * @param <T> A generic type which can be either of Part's subclasses
+     */
     public <T extends Part> void initForm(T partToModify, int partIdx) {
         partIDText.setText(Integer.toString(partToModify.getId()));
         partNameText.setText(partToModify.getName());
@@ -61,6 +72,12 @@ public class ModifyPartController {
         partIndex = partIdx;
     }
 
+    /**
+     * Sets the part copy's fields based on the form data, verifies the form data is valid, and
+     * replaces the original part with the copy.
+     *
+     * @param event The event that called this method
+     */
     public void updatePart(ActionEvent event) {
         try {
             updatedPart.setName(partNameText.getText());
@@ -89,6 +106,11 @@ public class ModifyPartController {
         }
     }
 
+    /**
+     * Toggle the form between its OutSourced and InHouse versions
+     *
+     * @param event The event that called this method
+     */
     public void changePartSource(ActionEvent event) {
         RadioButton eventSrc = (RadioButton) event.getSource();
         if (eventSrc == inHousePartButton) {
@@ -98,6 +120,11 @@ public class ModifyPartController {
         }
     }
 
+    /**
+     * Changes the scene back to the main page.
+     *
+     * @param event The event that called this method.
+     */
     public void returnToMainPage(ActionEvent event) {
         Utilities.navigateToNewPage(event, "main-view.fxml");
     }
